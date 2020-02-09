@@ -3,18 +3,18 @@ import java.util.*;
 public class Main{
 	public static void main(String[] args){
 		Scanner scan = new Scanner(System.in);
-		Split spl = new Split();
+		Print spl = new Print();
 
 		System.out.print("user> ");
 		String input = scan.nextLine();
-		while(!input.equals("")){
-			System.out.println(input);
+		
+		//Se revisa que no sea un ingreso vacío
+		while(input.equals("")){
 			System.out.print("\nuser> ");
 			input = scan.nextLine();
-			if(!input.equals("")){
-				spl.values(input);
-			}
-
 		}
+		
+		System.out.print(spl.values(input));
+
 	}
 }
