@@ -38,23 +38,26 @@ public class Print{
 		}
 		
 		//Retorna lo que haya ingresado
-		return actualprint;	
+		return actualprint+"\n"+actualprint;	
 	}
 
 	//Se busca el metodo de imprimir
 	private boolean methodFound(){
 		boolean methodisfound = false;
-
+		
 		if (actualInput.contains("write-line")) {
-			actualInput = actualInput.replace("write-line", ""); //Se quita de lo ingresado
+			actualInput = actualInput.replaceAll("(?i) write-line", ""); //Se quita de lo ingresado
 			methodisfound = true;
 		} else if (actualInput.contains("write")) {
-			actualInput = actualInput.replace("write", ""); //Se quita de lo ingresado
+			actualInput = actualInput.replaceAll("(?i) write", ""); //Se quita de lo ingresado
 			methodisfound = true;
 		} else if (actualInput.contains("print")) {
-			actualInput = actualInput.replace("print", ""); //Se quita de lo ingresado
+			actualInput = actualInput.replaceAll("(?i) print", ""); //Se quita de lo ingresado
 			methodisfound = true;			
-		} else {
+		} else if (actualInput.contains("\"")) {
+			methodisfound = true;
+		} 
+		else {
 			methodisfound = false;
 		}
 		return methodisfound;
