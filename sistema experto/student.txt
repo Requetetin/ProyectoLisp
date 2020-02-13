@@ -1,0 +1,44 @@
+/*ESTUDIANTES PSICOLOGÍA*/
+(assert 
+	(situacion-persona
+		(dificultadCarrera facil)
+		(horarioClases tarde)
+		(cargaTrabajo leve)
+		(horasEstudioSemanal < 5)))
+
+(assert 
+	(situacion-persona
+		(dificultadCarrera facil)
+		(horarioClases noche)
+		(cargaTrabajo leve)
+		(horasEstudioSemanal < 5)))
+
+/*ESTUDIANTES MEDICINA*/
+(assert 
+	(situacion-persona
+		(dificultadCarrera dificil)
+		(horarioClases manana)
+		(cargaTrabajo alta)
+		(horasEstudioSemanal > 5)))
+
+(assert 
+	(situacion-persona
+		(dificultadCarrera dificil)
+		(horarioClases manana)
+		(cargaTrabajo alta)
+		(horasEstudioSemanal < 5)))
+
+/*ESTUDIANTES COMPUTACION*/
+(assert 
+	(situacion-persona
+		(dificultadCarrera intermedio)
+		(horarioClases manana)
+		(cargaTrabajo medio)
+		(horasEstudioSemanal < 5)))
+
+(assert 
+	(situacion-persona
+		(dificultadCarrera intermedio)
+		(horarioClases noche
+		(cargaTrabajo medio)
+		(horasEstudioSemanal > 5)))
