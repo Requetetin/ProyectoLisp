@@ -1,13 +1,15 @@
 import java.util.*;
 
 public class Print{
-	private ArrayList<String> values = new ArrayList<String>();
+	public ArrayList<String> listado = new ArrayList<String>();
 	private String comment;
 	private String actualprint = "";
 	private String actualInput;
 	
 
 	public String values(String input){
+		ArrayList<String> values = new ArrayList<String>();
+		
 		actualInput = input; //Se asigna el valor para revisar si contiene la función
 
 		if (methodFound()) { //Si ingresa metodo para mostrar en pantalla
@@ -30,9 +32,20 @@ public class Print{
 				}
 			}
 			//Se regresa el array a string
+			String complete_word = "";
+
 			for (String i : values ) {
 				actualprint += i;
-			}		
+				
+				if (!i.equals(" ")) { //Si el lugar actual es distinto de un espacio
+					complete_word += i; //Se agrega la letra de la palabra
+				} else {
+					listado.add(complete_word);
+					complete_word = ""; //Se regresa a vacio
+				}
+			}
+			listado.add(complete_word); //Se agrega la ultima palabra leida
+					
 		} else {
 			actualprint = "** -EVAL: La funcion no esta definida";
 		}
@@ -46,13 +59,13 @@ public class Print{
 		boolean methodisfound = false;
 		
 		if (actualInput.contains("write-line")) {
-			actualInput = actualInput.replaceAll("(?i) write-line", ""); //Se quita de lo ingresado
+			actualInput = actualInput.replaceAll("(?i)write-line", ""); //Se quita de lo ingresado
 			methodisfound = true;
 		} else if (actualInput.contains("write")) {
-			actualInput = actualInput.replaceAll("(?i) write", ""); //Se quita de lo ingresado
+			actualInput = actualInput.replaceAll("(?i)write", ""); //Se quita de lo ingresado
 			methodisfound = true;
 		} else if (actualInput.contains("print")) {
-			actualInput = actualInput.replaceAll("(?i) print", ""); //Se quita de lo ingresado
+			actualInput = actualInput.replaceAll("(?i)print", ""); //Se quita de lo ingresado
 			methodisfound = true;			
 		} else if (actualInput.contains("\"")) {
 			methodisfound = true;
