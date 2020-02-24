@@ -1,78 +1,50 @@
 import java.util.*;
 
 public class Print{
-	public ArrayList<String> listado = new ArrayList<String>();
 	private String comment;
 	private String actualprint = "";
-	private String actualInput;
 	
 
-	public String values(String input){
-		ArrayList<String> values = new ArrayList<String>();
+	public String values(String input){			
+		actualprint = actualprint.replace("(", ""); //Se remueven parentesis
 		
-		actualInput = input; //Se asigna el valor para revisar si contiene la función
+		//Se quitan los comentarios
+		for(int i=actualprint.indexOf(")"); i < input.length(); i++){
+			String possible_comment = actualprint.substring(actualprint.indexOf(")") + 1); //Se obtiene el posible comentario
 
-		if (methodFound()) { //Si ingresa metodo para mostrar en pantalla
-			String[] split_text = actualInput.split(""); //Se convierte a vector
-			//Se quitan los paréntesis
-			for(int i=0; i < split_text.length; i++){
-				if (split_text[i].equals("(")) {
-					//Se ignora
-				} else if (split_text[i].equals(")")) { //Se revisa si hay comentario
-					for (int j=i; j<split_text.length; j++) { //El contador inicia luego del paréntesis
-						if (split_text[j].equals(";")){
-							comment = actualInput.substring(actualInput.indexOf(";") + 1);
-							break;
-						}
-					}						
-				} else {
-					if (comment == null) {
-						values.add(split_text[i]);
-					}		
-				}
+			if (possible_comment.contains(";")) {
+				comment = actualprint.substring(actualprint.indexOf(";")); //Se obtiene el comentario
+				actualprint = actualprint.replace(comment, ""); //Se remueve el comentario del string
+				break;
 			}
-			//Se regresa el array a string
-			String complete_word = "";
-
-			for (String i : values ) {
-				actualprint += i;
-				
-				if (!i.equals(" ")) { //Si el lugar actual es distinto de un espacio
-					complete_word += i; //Se agrega la letra de la palabra
-				} else {
-					listado.add(complete_word);
-					complete_word = ""; //Se regresa a vacio
-				}
-			}
-			listado.add(complete_word); //Se agrega la ultima palabra leida
-					
-		} else {
-			actualprint = "** -EVAL: La funcion no esta definida";
 		}
-		
+
+		actualprint = actualprint.replace(")", ""); //Se remueve el de cierre
 		//Retorna lo que haya ingresado
 		return actualprint+"\n"+actualprint;	
 	}
 
 	//Se busca el metodo de imprimir
-	private boolean methodFound(){
+	public boolean methodPrintFound(String input){
 		boolean methodisfound = false;
 		
-		if (actualInput.contains("write-line")) {
-			actualInput = actualInput.replaceAll("(?i)write-line", ""); //Se quita de lo ingresado
+		if (input.contains("write-line")) {
+			actualprint = input.replace("write-line", "");
 			methodisfound = true;
-		} else if (actualInput.contains("write")) {
-			actualInput = actualInput.replaceAll("(?i)write", ""); //Se quita de lo ingresado
+		} else if (input.contains("write")) {
+			actualprint = input.replace("write", "");
 			methodisfound = true;
-		} else if (actualInput.contains("print")) {
-			actualInput = actualInput.replaceAll("(?i)print", ""); //Se quita de lo ingresado
+		} else if (input.contains("print")) {
+			actualprint = input.replace("print", "");
 			methodisfound = true;			
-		} else if (actualInput.contains("\"")) {
+		} else if (input.contains("\"")) {
 			methodisfound = true;
-		} 
-		else {
+		} else {
 			methodisfound = false;
 		}
+
 		return methodisfound;
 	}
+
+
 }
