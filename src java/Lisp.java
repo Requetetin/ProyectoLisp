@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main{
+public class Lisp{
 	public static void main(String[] args){
 		Scanner scan = new Scanner(System.in);
 		InterpreteLisp interprete = new InterpreteLisp();

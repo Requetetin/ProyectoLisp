@@ -10,7 +10,12 @@ import java.util.ArrayList;
 public class Predicados{
 
 	public boolean funAtom(ArrayList<String> listado){
-
+		int l = listado.indexOf("atom");
+		if(listado.get(l+1).contains("cons") || listado.get(l).contains("'") || listado.get(l+1).contains("list")){
+			return false;
+		}else{
+			return true;
+		}
 	}
 
 	public ArrayList<String> funList(ArrayList<String> listado){
