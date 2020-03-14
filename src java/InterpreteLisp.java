@@ -1,6 +1,7 @@
 import java.util.*;
 public class InterpreteLisp{
 	ArrayList<String> listado = new ArrayList<String>();
+	ArrayList<ArrayList<String>> ingresoLisp = new ArrayList<ArrayList<String>>();
 	boolean methodPrintIsFound = false;
 
 	Leer print = new Leer();
@@ -66,9 +67,27 @@ public class InterpreteLisp{
 			listado.add(complete_word); //Se agrega la primer operacion al listado					
 		}
 	}
+	//Metodo para hacer listas de listas
+	private void convertirArrayArray(){
+		for (int i=0; i<listado.size(); i++) {
+			ArrayList<String> listado2 = new ArrayList<String>();
+
+			String[] split_text = listado.get(i).split(" "); //Se convierte a vector por espacio
+
+			for (int j=0; j<split_text.length; j++) {
+				if (!split_text[j].equals("")) {
+					listado2.add(split_text[j]);	
+				}
+				
+			}
+
+			ingresoLisp.add(listado2);
+		}
+	}
 	//Metodo para obtener el listado
-	public ArrayList<String> getListado(){
-		return this.listado;
+	public ArrayList<ArrayList<String>> getListado(){
+		convertirArrayArray();
+		return this.ingresoLisp;
 	}
 	//Metodo para realizar la funcion encontrada
 	public String buscarFuncionLisp(String input){
