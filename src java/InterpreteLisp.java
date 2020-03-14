@@ -3,7 +3,7 @@ public class InterpreteLisp{
 	ArrayList<String> listado = new ArrayList<String>();
 	boolean methodPrintIsFound = false;
 
-	Print print = new Print();
+	Leer print = new Leer();
 
 	//Se convierte el input a arraylist
 	public void convertirArray(String input){
