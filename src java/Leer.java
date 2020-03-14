@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Print{
+public class Leer{
 	private String comment;
 	private String actualprint = "";
 	
