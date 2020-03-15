@@ -10,7 +10,7 @@ public class Lisp{
 		
 		//Se revisa que no sea un ingreso vacío
 		//PROGRA DE MARTIN QUE NO ENTENDI
-		/*
+		/**
 		while(!input.equals("")){
 			System.out.println(input);
 			System.out.print("\nuser> ");
@@ -20,11 +20,11 @@ public class Lisp{
 			}
 
 		}
-		*/
+		
 
 		System.out.println(interprete.buscarFuncionLisp(input)); //Dependiendo del metodo encontrado 
+		*/
+		//System.out.print(spl.values(input));
 		
-		System.out.print(interprete.getListado());
-
 	}
 }

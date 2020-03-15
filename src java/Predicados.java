@@ -26,11 +26,11 @@ public class Predicados{
 
 	public boolean funEquals(ArrayList<String> listado){
 		int l = listado.indexOf("equal");
-		if(){
+		//if(){
 
-		}else{
+		//}else{
 
-		}
+		//}
 	}
 
 	public String funCond(ArrayList<String> listado){
