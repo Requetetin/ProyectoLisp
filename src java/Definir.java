@@ -80,7 +80,7 @@ public class Definir{
 		// Consiguiendo el nombre de la función
 		for(int i = 6; i < nombre.size(); i++){
 			
-			if(nombre.get(i).equals(" ")){
+			if(nombre.get(i).equals(" \"")){
 				break;
 			}
 			aux.add(nombre.get(i).toUpperCase());
@@ -109,21 +109,20 @@ public class Definir{
 	 * @return un string con la función lista para ser leida
 	 * *Utilizado en setFuncion
 	 */
-	private ArrayList<ArrayList<String>> setFuncionalidadFuncion(ArrayList<ArrayList<String>> function){
+	private ArrayList<ArrayList<String>> setFuncionalidadFuncion(ArrayList<ArrayList<String>> funtionality){
 		ArrayList<ArrayList<String>> temp = new ArrayList<>();
 		ArrayList<String> aux = new ArrayList<>();
 
 		// Agregando a una arraylist 
-		for(int i = 0; i < function.size() - 3; i++){
-			for(int j = 1; j < function.get(i).size() - 2; j++){
+		for(int i = 0; i < funtionality.size() - 3; i++){
+			for(int j = 1; j < funtionality.get(i).size() - 2; j++){
 
 				// Agregando la funcionalidad sin parentesis
-				aux.add(function.get(i).get(j));
+				aux.add(funtionality.get(i).get(j));
 
 			}
 
 			temp.add(aux);
-
 		}
 
 		return temp;
