@@ -51,6 +51,16 @@ public class Predicados{
 	}
 
 	public String funCond(ArrayList<ArrayList<String>> listado){
-		return "yes";
-	}
+		for(int i=0; i<listado.size();i++){
+			if(listado.get(i).contains("cond")){
+				if(listado.get(i-2)){
+					return listado.get(i-1).get(1);
+				}else if(listado.get(i-4)){
+					return listado.get(i-3).get(1);
+				}else{
+					return listado.get(i-5).get(2);
+				}
+			}
+		}
+	}	
 }
