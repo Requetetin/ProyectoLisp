@@ -137,13 +137,17 @@ public class InterpreteLisp{
 								break;
 							case 1: //List
 								//mostrar.add(predicados.funList(ingresoLisp));
-								mostrar.add("Hay que ver que hacer con este");
 								break;
 							case 2: //Equals
 								mostrar.add(predicados.funEquals(ingresoLisp));
 								break;
 							case 3: //Cond
-								mostrar.add(predicados.funCond(ingresoLisp));
+								try{
+									mostrar.add(predicados.funCond(ingresoLisp));
+								} catch (Exception e) {
+									mostrar.add("Debes de ingresar 3 condiciones");
+									//mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
+								}
 								break;
 							case 4: //Defun
 								try{
@@ -168,9 +172,9 @@ public class InterpreteLisp{
 							default:
 								break;
 						}
-					}		
+					break;
+					}	
 				}
-				ingresoLisp.remove(i);
 			}
 		}
 		if (mostrar.size() == 0) {
