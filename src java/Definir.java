@@ -14,6 +14,7 @@ public class Definir{
 	private Map<String, ArrayList<ArrayList<String>>> functions = new HashMap<>();
 	private Map<String, ArrayList<String>> variables = new HashMap<>();
 	private Calcular calc = new Calcular();
+	private Predicados predicate = new Predicados();
 
 	/**
 	 * Se encarga de correr una función o indicar que no se encuentra
@@ -33,6 +34,7 @@ public class Definir{
 		function.get(0).remove(" )");
 
 		if(functions.containsKey(functionName)){
+
 			// Consiguiendo los elementos necesarios para poder realizar la funcion
 			funtionality = functions.get(functionName);
 			variables = this.variables.get(functionName);
@@ -43,7 +45,8 @@ public class Definir{
 			}
 
 			
-			// Remplazando todas las variables por 
+			// Remplazando todas las variables por los valores obtenidos
+
 
 
 			return "Respuesta";
@@ -53,6 +56,11 @@ public class Definir{
 		}
 
 	}
+
+	private ArrayList<ArrayList<String>> runningFunction(ArrayList<ArrayList<String>> data){
+		return null;
+	}
+
 
 	/**
 	* Se encarga de agregar una nueva funcin al mapa
@@ -83,9 +91,10 @@ public class Definir{
 		/**
 		Borrar despues
 		*/
-		System.out.println("\n\n" + funtionName);
-		System.out.println(this.functions.get(funtionName));
-		System.out.println(this.variables.get(funtionName));
+		System.out.println("sdfasdfsadfsdfsadfddddddddddddddddddddddddddddddd");
+		System.out.println("sdfdasf\n\n" + funtionName);
+		System.out.println("323232\n" + this.functions.get(funtionName));
+		System.out.println("PTMMMM" + this.variables.get(funtionName));
 		return funtionName;
 	}
 
@@ -131,7 +140,7 @@ public class Definir{
 
 		// Agregando a las listas
 		aux[0] = nombreAux2;
-		aux[1] = nombreAux;
+		aux[1] = nombreAux.replace(" ","");
 
 		// Agregando el nombre
 		temporal.add(aux[0]);
