@@ -1,3 +1,12 @@
+/**
+* @author Andrea Amaya 19357
+* @author Martin Amado 19020
+* @author Brandon Hernández 19376
+*
+*
+* Se encarga de separar lo ingresado en un arraylist de arraylist
+* Se encarga de llevar a cabo las funciones necesarias dentro del input
+*/
 import java.util.*;
 public class InterpreteLisp{
 	ArrayList<String> listado = new ArrayList<String>();
@@ -6,7 +15,11 @@ public class InterpreteLisp{
 
 	Leer print = new Leer();
 
-	//Se convierte el input a arraylist
+	/**
+	Pre: Ingresan codigo en forma lisp
+	@param input 		String ingresado por el usuario
+	Post: Se convierte el input a arraylist
+	*/
 	public void convertirArray(String input){
 		ArrayList<String> invertido = new ArrayList<String>(); //Arraylist temporal de invertidos
 
@@ -46,13 +59,16 @@ public class InterpreteLisp{
 		Collections.reverse(invertido); //Se revierte el orden
 		agregar(invertido); //Se agrega lo ultimo dejado en invertidos
 	}
-	//Método para agregar la funcion encontrada al listado
+
+	/**
+	@param temporal 	Se recibe el arraylist temporal
+	Post: Se agrega lo mas significativo al arraylist listado
+	*/
 	private void agregar(ArrayList<String> temporal){
 		StringBuilder  s=new StringBuilder();
 		boolean first = true;
 
 		if (temporal.size()>0) {
-
 			//Se regresa el array a string
 			String complete_word = "";
 			for (String i : temporal) {
@@ -67,7 +83,10 @@ public class InterpreteLisp{
 			listado.add(complete_word); //Se agrega la primer operacion al listado					
 		}
 	}
-	//Metodo para hacer listas de listas
+
+	/**
+	Post: Se crea un arraylist de arraylist con todo lo ingresado
+	*/
 	private void convertirArrayArray(){
 		for (int i=0; i<listado.size(); i++) {
 			ArrayList<String> listado2 = new ArrayList<String>();
@@ -84,18 +103,28 @@ public class InterpreteLisp{
 			ingresoLisp.add(listado2);
 		}
 	}
-	//Metodo para obtener el listado
+
+
+	/**
+	Pre: Hay un listado
+	@return arraylist de arraylist con todo lo ingresado
+	*/
 	public ArrayList<ArrayList<String>> getListado(){
 		convertirArrayArray();
 		return this.ingresoLisp;
 	}
-	//Metodo para realizar la funcion encontrada
+
+	/**
+	Pre: Hay algo ingresado por el usuario
+	@return la funcion realizada por el usuario
+	*/
 	public String buscarFuncionLisp(String input){
 		convertirArray(input); //Se genera el array para los metodos que lo necesiten
+		convertirArrayArray(); //Se genera el arraylist de arraylist
 
 		if(print.methodPrintFound(input)){ //Print recibe el input inicial
 			return print.values(input);  
-		}
+		} 
 
 		return "Metodo no encontrado";
 	}

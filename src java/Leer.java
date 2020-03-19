@@ -1,10 +1,21 @@
+/**
+* @author Andrea Amaya 19357
+* @author Martin Amado 19020
+* @author Brandon Hernández 19376
+*
+*
+* Se encarga de trabajar como un print en lisp
+*/
 import java.util.*;
 
 public class Leer{
 	private String comment;
 	private String actualprint = "";
 	
-
+	/**
+	Pre: Hay un input ingresado por el usuario
+	@return el print de lo ingresado
+	*/
 	public String values(String input){			
 		actualprint = actualprint.replace("(", ""); //Se remueven parentesis
 		
@@ -24,7 +35,10 @@ public class Leer{
 		return actualprint+"\n"+actualprint;	
 	}
 
-	//Se busca el metodo de imprimir
+	/**
+	Pre: Se pide una funcion
+	Post: Se busca el metodo print
+	*/
 	public boolean methodPrintFound(String input){
 		boolean methodisfound = false;
 		
