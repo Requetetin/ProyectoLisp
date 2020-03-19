@@ -116,7 +116,6 @@ public class InterpreteLisp{
 				temporal += str;
 			} else if (!str.contains("(") && !str.contains(")")) {
 				temporal += " " + str;
-				System.out.println(temporal);
 			} else if (str.contains("(") && !str.contains(")")) {
 				str = str.replace("("," ");
 				str = " (" + str;
@@ -129,7 +128,6 @@ public class InterpreteLisp{
 		}
 
 		temporal = temporal.replaceAll("( )+", " ");
-		System.out.println(temporal);
 		return temporal;
 	}
 
