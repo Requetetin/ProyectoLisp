@@ -14,7 +14,7 @@ public class Predicados{
 		for(int i=0;i<listado.size();i++){
 			if(listado.get(i).contains("atom")){
 				int p = listado.get(i).indexOf("atom");
-				if(listado.get(i).get(p-1).contains("cons")||listado.get(i).get(p-1).contains("list")||listado.get(i).get(p-1).equals("'")){
+				if(listado.get(i).contains("cons")||listado.get(i).contains("list")||listado.get(p-1).equals("'")||listado.get(i).contains(" cons")||listado.get(i).contains(" list")||listado.get(p-1).equals(" '")){
 					return "true";
 				}else{
 					return "false";
