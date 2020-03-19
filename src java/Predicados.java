@@ -11,13 +11,14 @@ public class Predicados{
 
 	public String funAtom(ArrayList<ArrayList<String>> listado){
 		
+
 		for(int i=0;i<listado.size();i++){
-			if(listado.get(i).contains(" atom")){
-				int p = listado.get(i).indexOf(" atom");
-				if(listado.get(i).contains("cons")||listado.get(i).contains("list")||listado.get(p-1).equals("'")||listado.get(i).contains(" cons")||listado.get(i).contains(" list")||listado.get(p-1).equals(" '")){
-					return "true";
-				}else{
+			if(listado.get(i).contains("atom")){
+				int p = listado.get(i).indexOf("atom");
+				if(listado.get(i).contains("cons")||listado.get(i).contains("list")||listado.get(p-1).contains("'")){
 					return "false";
+				}else{
+					return "true  ";
 				}
 			}
 		}return "false";
