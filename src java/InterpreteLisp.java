@@ -148,6 +148,7 @@ public class InterpreteLisp{
 	public ArrayList<String> buscarFuncionLisp(String input){
 		ArrayList<String> mostrar = new ArrayList();
 		ArrayList<ArrayList<String>> mostrar2 = new ArrayList();
+		boolean seguir = true;
 		
 		convertirArray(input); //Se genera el array para los metodos que lo necesiten
 		generarVoc(); //Se genera el vocabulario lisp
@@ -163,50 +164,53 @@ public class InterpreteLisp{
 						mostrar.add(definir.setFuncion(ingresoLisp)); //Se revisa que no exista la llave, sino se genera la funcion sin error
 					} catch (Exception e) {
 						mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
-					}					
+					}	
+					seguir = false;				
 				}
 			}
 
-			for (int i=0; i<ingresoLisp.size(); i++) {
-				for (int j=0; j<vocLisp.size(); j++) {
-					if (ingresoLisp.get(i).contains(vocLisp.get(j))) {
-						switch(j){
-							case 0: //Atom
-								mostrar.add(predicados.funAtom(ingresoLisp));
-								break;
-							case 1: //List
-								//mostrar.add(predicados.funList(ingresoLisp));
-								break;
-							case 2: //Equals
-								mostrar.add(predicados.funEquals(ingresoLisp));
-								break;
-							case 3: //Cond
-								try{
-									mostrar.add(predicados.funCond(ingresoLisp));
-								} catch (Exception e) {
-									mostrar.add("Debes de ingresar 3 condiciones");
-									//mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
-								}
-								break;
-							case 4: //Sumar
-								mostrar.add(calcular.operar(ingresoLisp));
-								break;
-							case 5: //Restar
-								mostrar.add(calcular.operar(ingresoLisp));
-								break;
-							case 6: //Dividir
-								mostrar.add(calcular.operar(ingresoLisp));
-								break;
-							case 7: //Multiplicar
-								mostrar.add(calcular.operar(ingresoLisp));
-								break;
-							default:
-								break;
-						}
-					break;
-					}	
+			if (seguir) {
+				for (int i=0; i<ingresoLisp.size(); i++) {
+					for (int j=0; j<vocLisp.size(); j++) {
+						if (ingresoLisp.get(i).contains(vocLisp.get(j))) {
+							switch(j){
+								case 0: //Atom
+									mostrar.add(predicados.funAtom(ingresoLisp));
+									break;
+								case 1: //List
+									//mostrar.add(predicados.funList(ingresoLisp));
+									break;
+								case 2: //Equals
+									mostrar.add(predicados.funEquals(ingresoLisp));
+									break;
+								case 3: //Cond
+									try{
+										mostrar.add(predicados.funCond(ingresoLisp));
+									} catch (Exception e) {
+										mostrar.add("Debes de ingresar 3 condiciones");
+										//mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
+									}
+									break;
+								case 4: //Sumar
+									mostrar.add(calcular.operar(ingresoLisp));
+									break;
+								case 5: //Restar
+									mostrar.add(calcular.operar(ingresoLisp));
+									break;
+								case 6: //Dividir
+									mostrar.add(calcular.operar(ingresoLisp));
+									break;
+								case 7: //Multiplicar
+									mostrar.add(calcular.operar(ingresoLisp));
+									break;
+								default:
+									break;
+							}
+						break;
+						}	
+					}
+					break;				
 				}
-				break;
 			}
 		}
 		if (mostrar.size() == 0) {
