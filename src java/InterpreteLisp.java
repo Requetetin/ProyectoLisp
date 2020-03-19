@@ -136,7 +136,6 @@ public class InterpreteLisp{
 		vocLisp.add("list");
 		vocLisp.add("equals");
 		vocLisp.add("cond");
-		vocLisp.add("defun");
 		vocLisp.add("+");
 		vocLisp.add("-");
 		vocLisp.add("/");
@@ -158,6 +157,16 @@ public class InterpreteLisp{
 		if(print.methodPrintFound(input)){ //Print recibe el input inicial
 			mostrar.add(print.values(input));  
 		} else {
+			for (int j=0; j<ingresoLisp.size(); j++) {
+				if (ingresoLisp.get(j).contains("defun")) {
+					try{
+						mostrar.add(definir.setFuncion(ingresoLisp)); //Se revisa que no exista la llave, sino se genera la funcion sin error
+					} catch (Exception e) {
+						mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
+					}					
+				}
+			}
+
 			for (int i=0; i<ingresoLisp.size(); i++) {
 				for (int j=0; j<vocLisp.size(); j++) {
 					if (ingresoLisp.get(i).contains(vocLisp.get(j))) {
@@ -179,23 +188,16 @@ public class InterpreteLisp{
 									//mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
 								}
 								break;
-							case 4: //Defun
-								try{
-									mostrar.add(definir.setFuncion(ingresoLisp)); //Se revisa que no exista la llave, sino se genera la funcion sin error
-								} catch (Exception e) {
-									mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
-								}
-								break;
-							case 5: //Sumar
+							case 4: //Sumar
 								mostrar.add(calcular.operar(ingresoLisp));
 								break;
-							case 6: //Restar
+							case 5: //Restar
 								mostrar.add(calcular.operar(ingresoLisp));
 								break;
-							case 7: //Dividir
+							case 6: //Dividir
 								mostrar.add(calcular.operar(ingresoLisp));
 								break;
-							case 8: //Multiplicar
+							case 7: //Multiplicar
 								mostrar.add(calcular.operar(ingresoLisp));
 								break;
 							default:
