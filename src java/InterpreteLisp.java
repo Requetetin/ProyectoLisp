@@ -125,6 +125,8 @@ public class InterpreteLisp{
 		convertirArray(input); //Se genera el array para los metodos que lo necesiten
 		generarVoc(); //Se genera el vocabulario lisp
 
+		System.out.println(ingresoLisp);
+
 		if(print.methodPrintFound(input)){ //Print recibe el input inicial
 			mostrar.add(print.values(input));  
 		} else {
@@ -153,8 +155,7 @@ public class InterpreteLisp{
 								try{
 									mostrar.add(definir.setFuncion(ingresoLisp)); //Se revisa que no exista la llave, sino se genera la funcion sin error
 								} catch (Exception e) {
-									mostrar.add("Hay que ver que hacer con este");
-									//mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
+									mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
 								}
 								break;
 							case 5: //Sumar
@@ -175,6 +176,7 @@ public class InterpreteLisp{
 					break;
 					}	
 				}
+				break;
 			}
 		}
 		if (mostrar.size() == 0) {

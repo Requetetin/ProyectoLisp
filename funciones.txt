@@ -1,5 +1,5 @@
 ( DEFUN FTOC(TEMP)    ; farenheit to centrigrados
- ( / ( - TEMP 32) 1.8))
+ ( / ( - TEMP 32 ) 1.8 ) )
 
 ( DEFUN FIBONACCI(N)
  ( COND ( ( = N 0 ) 1 ) ; n = 0?
