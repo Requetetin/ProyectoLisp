@@ -20,15 +20,10 @@ public class Definir{
 	 * @param funtion es el nombre de la función que quiere ser utilizada
 	 * @return el resultado obtenido luego de realizar la función
 	 */
-	public String runFuncion(String funtion){
-		String[] temporal = new String[2];
-		temporal = funtion.split("(");
+	public String runFuncion(ArrayList<String> function){
+		String functionName = function.get(1).toUpperCase();
 
-		// Regresando a su estado inicial solo que separados
-		temporal[0] = temporal[0].toUpperCase();
-		temporal[1] = "(" + temporal[1];
-
-		if(functions.containsKey(temporal[0])){
+		if(functions.containsKey(functionName)){
 			return "HOLAAAA BB :3";
 		}else{
 
