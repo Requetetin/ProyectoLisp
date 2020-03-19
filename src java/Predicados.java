@@ -12,8 +12,8 @@ public class Predicados{
 	public String funAtom(ArrayList<ArrayList<String>> listado){
 		
 		for(int i=0;i<listado.size();i++){
-			if(listado.get(i).contains("atom")){
-				int p = listado.get(i).indexOf("atom");
+			if(listado.get(i).contains(" atom")){
+				int p = listado.get(i).indexOf(" atom");
 				if(listado.get(i).contains("cons")||listado.get(i).contains("list")||listado.get(p-1).equals("'")||listado.get(i).contains(" cons")||listado.get(i).contains(" list")||listado.get(p-1).equals(" '")){
 					return "true";
 				}else{
@@ -25,7 +25,7 @@ public class Predicados{
 
 	public ArrayList<ArrayList<String>> funList(ArrayList<ArrayList<String>> listado){
 		for(int i=0;i<listado.size();i++){
-			if(listado.get(i).contains("list")){
+			if(listado.get(i).contains("list")||listado.get(i).contains(" list")){
 				ArrayList<String> temp = new ArrayList<String>();
 				temp = listado.get(i);
 				temp.remove(temp.indexOf("list"));
