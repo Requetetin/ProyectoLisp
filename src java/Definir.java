@@ -21,13 +21,28 @@ public class Definir{
 	 * @return el resultado obtenido luego de realizar la función
 	 */
 	public String runFuncion(ArrayList<String> function){
-		String functionName = function.get(1).toUpperCase();
+		// Espacios en donde se guardaran las funciones y las variables
+		ArrayList<ArrayList<String>> funtionality = new ArrayList<>();
+		ArrayList<String> variables = new ArrayList<>();
+
+		String functionName = function.get(1).toUpperCase(); // Nombre en mayusculas de la funcion
 
 		if(functions.containsKey(functionName)){
+			// Empezando a realizar la función
+			funtionality = functions.get(functionName);
+			variables = this.variables.get(functionName);
+
+			// Remplazando todas las variables por 
+
+
+
+
+
+
 			return "HOLAAAA BB :3";
 		}else{
 
-			return "*** - EVAL: la funcion " + temporal[0] + " no esta definida";
+			return "*** - EVAL: la funcion " + functionName + " no esta definida";
 		}
 
 	}
