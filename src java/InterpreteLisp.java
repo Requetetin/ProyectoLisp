@@ -66,9 +66,10 @@ public class InterpreteLisp{
 				}
 			}
 		}
-
+		
 		Collections.reverse(invertido); //Se revierte el orden
 		agregar(invertido); //Se agrega lo ultimo dejado en invertidos
+		
 	}
 
 	/**
@@ -109,35 +110,66 @@ public class InterpreteLisp{
 	Post:
 	*/
 	private String addSpace(String[] input){
-		String temporal = "";
-		boolean first = true;
+		String[] temporal;
+		String str = "";
+		String temporal2 = "";
+
+		for (int j=0; j<input.length; j++) {
+			int contador1 = 0;
+			int contador2 = 0;
+
+			str = input[j];
+			temporal = str.split("");
+
+			for (int i=0; i<temporal.length; i++) {
+				if (temporal[i].equals(")")) {
+					contador1++;
+				} else if (temporal[i].equals("(")) {
+					contador2++;
+				}
+			}
+
+			if (contador1 > 1) {
+				str = str.replace("("," ( ");
+			} else if (contador2 > 1) {
+				str = str.replace(")"," ) ");
+			}
+
+			temporal2 += " " + str;
+		}
+
+		input = temporal2.split(" ");
+		temporal2 = "";
 
 		for (int i=0; i<input.length; i++) {
-			String str = input[i];
+			str = input[i];
+
 			if (str.contains("(") && str.contains(")")) {
-				temporal += str;
+				int temp = str.indexOf(")");
+				temporal2 += " " +str.substring(0, temp);
+				temporal2 += " ( " +str.substring(temp + 1);
 			} else if (!str.contains("(") && !str.contains(")")) {
-				temporal += " " + str;
+				temporal2 += " " + str;
 			} else if (str.contains("(") && !str.contains(")")) {
 				str = str.replace("("," ");
 				str = " ( " + str;
-				temporal += str;
+				temporal2 += str;
 			} else if (str.contains(")") && !str.contains("(")) {
 				int temp = str.indexOf(")");
-				temporal += " " +str.substring(0, temp);
-				temporal += " ) " +str.substring(temp + 1);
+				temporal2 += " " +str.substring(0, temp);
+				temporal2 += " ) " +str.substring(temp + 1);
 			} 
 		}
 
-		StringTokenizer st = new StringTokenizer(temporal, " ");
+		StringTokenizer st = new StringTokenizer(temporal2, " ");
 		StringBuffer sb = new StringBuffer();
 		 
 		while(st.hasMoreElements()){
 		    sb.append(st.nextElement()).append(" ");
 		}
 		 
-		temporal = sb.toString();
-		return temporal;
+		temporal2 = sb.toString();
+		return temporal2;
 	}
 
 	private void generarVoc(){
@@ -178,7 +210,7 @@ public class InterpreteLisp{
 				}
 			}
 
-			if (seguir) {
+			while (seguir) {
 				for (int i=0; i<ingresoLisp.size(); i++) {
 					for (int j=0; j<vocLisp.size(); j++) {
 						if (ingresoLisp.get(i).contains(vocLisp.get(j))) {
@@ -197,7 +229,6 @@ public class InterpreteLisp{
 										mostrar.add(predicados.funCond(ingresoLisp));
 									} catch (Exception e) {
 										mostrar.add("Debes de ingresar 3 condiciones");
-										//mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
 									}
 									break;
 								case 4: //Sumar
@@ -215,10 +246,9 @@ public class InterpreteLisp{
 								default:
 									break;
 							}
-						break;
+							seguir = false;
 						}	
-					}
-					break;				
+					}			
 				}
 			}
 		}
