@@ -10,17 +10,22 @@
 import java.util.*;
 public class InterpreteLisp{
 	ArrayList<String> listado = new ArrayList<String>();
+	ArrayList<String> vocLisp = new ArrayList<String>();
 	ArrayList<ArrayList<String>> ingresoLisp = new ArrayList<ArrayList<String>>();
 	boolean methodPrintIsFound = false;
 
 	Leer print = new Leer();
+	Predicados predicados = new Predicados();
+	Definir definir = new Definir();
+	Calcular calcular = new Calcular();
+
 
 	/**
 	Pre: Ingresan codigo en forma lisp
 	@param input 		String ingresado por el usuario
 	Post: Se convierte el input a arraylist
 	*/
-	public void convertirArray(String input){
+	private void convertirArray(String input){
 		ArrayList<String> invertido = new ArrayList<String>(); //Arraylist temporal de invertidos
 
 
@@ -65,6 +70,7 @@ public class InterpreteLisp{
 	Post: Se agrega lo mas significativo al arraylist listado
 	*/
 	private void agregar(ArrayList<String> temporal){
+		listado = new ArrayList<String>();
 		StringBuilder  s=new StringBuilder();
 		boolean first = true;
 
@@ -88,6 +94,7 @@ public class InterpreteLisp{
 	Post: Se crea un arraylist de arraylist con todo lo ingresado
 	*/
 	private void convertirArrayArray(){
+		ingresoLisp = new ArrayList<ArrayList<String>>();
 		for (int i=0; i<listado.size(); i++) {
 			ArrayList<String> listado2 = new ArrayList<String>();
 
@@ -104,29 +111,82 @@ public class InterpreteLisp{
 		}
 	}
 
-
 	/**
-	Pre: Hay un listado
-	@return arraylist de arraylist con todo lo ingresado
+	Post:
 	*/
-	public ArrayList<ArrayList<String>> getListado(){
-		convertirArrayArray();
-		return this.ingresoLisp;
+	private void generarVoc(){
+		vocLisp.add("atom");
+		vocLisp.add("list");
+		vocLisp.add("equals");
+		vocLisp.add("cond");
+		vocLisp.add("defun");
+		vocLisp.add("+");
+		vocLisp.add("-");
+		vocLisp.add("/");
+		vocLisp.add("*");
 	}
-
 	/**
 	Pre: Hay algo ingresado por el usuario
 	@return la funcion realizada por el usuario
 	*/
-	public String buscarFuncionLisp(String input){
+	public ArrayList<String> buscarFuncionLisp(String input){
+		ArrayList<String> mostrar = new ArrayList();
 		convertirArray(input); //Se genera el array para los metodos que lo necesiten
 		convertirArrayArray(); //Se genera el arraylist de arraylist
+		generarVoc(); //Se genera el vocabulario lisp
 
 		if(print.methodPrintFound(input)){ //Print recibe el input inicial
-			return print.values(input);  
-		} 
+			mostrar.add(print.values(input));  
+		} else {
+			for (int i=0; i<ingresoLisp.size(); i++) {
+				for (int j=0; j<vocLisp.size(); j++) {
+					if (ingresoLisp.get(i).contains(vocLisp.get(j))) {
+						switch(j){
+							case 0: //Atom
+								mostrar.add(predicados.funAtom(ingresoLisp));
+								break;
+							case 1: //List
+								//mostrar.add(predicados.funList(ingresoLisp));
+								mostrar.add("Hay que ver que hacer con este");
+								break;
+							case 2: //Equals
+								mostrar.add(predicados.funEquals(ingresoLisp));
+								break;
+							case 3: //Cond
+								mostrar.add(predicados.funCond(ingresoLisp));
+								break;
+							case 4: //Defun
+								try{
+									mostrar.add(definir.setFuncion(ingresoLisp)); //Se revisa que no exista la llave, sino se genera la funcion sin error
+								} catch (Exception e) {
+									mostrar.add("Hay que ver que hacer con este");
+									//mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
+								}
+								break;
+							case 5: //Sumar
+								mostrar.add(calcular.operar(ingresoLisp));
+								break;
+							case 6: //Restar
+								mostrar.add(calcular.operar(ingresoLisp));
+								break;
+							case 7: //Dividir
+								mostrar.add(calcular.operar(ingresoLisp));
+								break;
+							case 8: //Multiplicar
+								mostrar.add(calcular.operar(ingresoLisp));
+								break;
+							default:
+								mostrar.add("Metodo no encontrado");
+								break;
+						}
+					}			
+				}
 
-		return "Metodo no encontrado";
+				ingresoLisp.remove(i);
+			}
+		}
+
+		return mostrar;
 	}
 	
 }

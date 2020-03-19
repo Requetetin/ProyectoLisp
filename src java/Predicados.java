@@ -9,18 +9,18 @@ import java.util.ArrayList;
 */
 public class Predicados{
 
-	public boolean funAtom(ArrayList<ArrayList<String>> listado){
+	public String funAtom(ArrayList<ArrayList<String>> listado){
 		
 		for(int i=0;i<listado.size();i++){
 			if(listado.get(i).contains("atom")){
 				int p = listado.get(i).indexOf("atom");
 				if(listado.get(i).get(p-1).contains("cons")||listado.get(i).get(p-1).contains("list")||listado.get(i).get(p-1).equals("'")){
-					return true;
+					return "true";
 				}else{
-					return false;
+					return "false";
 				}
 			}
-		}return false;
+		}return "false";
 	}
 
 	public ArrayList<ArrayList<String>> funList(ArrayList<ArrayList<String>> listado){
@@ -36,21 +36,22 @@ public class Predicados{
 		return listado;
 	}
 
-	public boolean funEquals(ArrayList<ArrayList<String>> listado){
+	public String funEquals(ArrayList<ArrayList<String>> listado){
 		for(int i=0; i<listado.size();i++){
 			if(listado.get(i).contains("equals")){
 				int p = listado.get(i).indexOf("equals");
 				if(listado.get(i).get(p-1).equals(listado.get(i).get(p-2))){
-					return true;
+					return "true";
 				}else{
-					return false;
+					return "false";
 				}
 			}
 		}
-		return false;
+		return "false";
 	}
 
 	public String funCond(ArrayList<ArrayList<String>> listado){
+		/*
 		for(int i=0; i<listado.size();i++){
 			if(listado.get(i).contains("cond")){
 				if(listado.get(i-2)){
@@ -62,5 +63,7 @@ public class Predicados{
 				}
 			}
 		}
+		*/
+		return "era para ver si funcionaba lo otro";
 	}	
 }
