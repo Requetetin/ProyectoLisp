@@ -4,8 +4,9 @@ public class Main{
 	public static void main(String[] args){
 		Scanner scan = new Scanner(System.in);
 		InterpreteLisp interprete = new InterpreteLisp();
+		Boolean seguir = true;
 		
-		while(true){
+		while(seguir){
 			String text = "";
 			System.out.print("user> ");
 
@@ -17,7 +18,12 @@ public class Main{
     			text += input;
 			}
 
-			System.out.println(interprete.buscarFuncionLisp(text)); //Dependiendo del metodo encontrado 
+			if (text.equals("")) {
+				seguir = false;
+			} else {
+				System.out.println(interprete.buscarFuncionLisp(text)); //Dependiendo del metodo encontrado 
+			}
+			
 		}
 	}
 }

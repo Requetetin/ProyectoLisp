@@ -30,7 +30,7 @@ public class InterpreteLisp{
 		ArrayList<String> invertido = new ArrayList<String>(); //Arraylist temporal de invertidos
 
 
-		String[] split_text = input.split(" "); //Se convierte a vector por letra
+		String[] split_text = input.split(" |\n"); //Se convierte a vector por letra
 		
 		for (int i=0; i<split_text.length; i++) {
 			invertido.add(split_text[i]); //Se crea un array con todas las letras
