@@ -138,6 +138,7 @@ public class InterpreteLisp{
 		if(print.methodPrintFound(input)){ //Print recibe el input inicial
 			mostrar.add(print.values(input));  
 		} else {
+			System.out.println(ingresoLisp);
 			for (int i=0; i<ingresoLisp.size(); i++) {
 				for (int j=0; j<vocLisp.size(); j++) {
 					if (ingresoLisp.get(i).contains(vocLisp.get(j))) {
@@ -176,14 +177,15 @@ public class InterpreteLisp{
 								mostrar.add(calcular.operar(ingresoLisp));
 								break;
 							default:
-								mostrar.add("Metodo no encontrado");
 								break;
 						}
-					}			
+					}		
 				}
-
 				ingresoLisp.remove(i);
 			}
+		}
+		if (mostrar.size() == 0) {
+			mostrar.add("Metodo no encontrado");
 		}
 
 		return mostrar;
