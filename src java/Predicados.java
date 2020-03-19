@@ -15,11 +15,16 @@ public class Predicados{
 		for(int i=0;i<listado.size();i++){
 			if(listado.get(i).contains("atom")){
 				int p = listado.get(i).indexOf("atom");
-				if(listado.get(i).contains("cons")||listado.get(i).contains("list")||listado.get(p-1).contains("'")){
-					return "false";
-				}else{
+				try{
+					if(listado.get(i-1).contains("cons")||listado.get(i-1).contains("list")||listado.get(i).get(p+1).contains("'")){
+						return "false";
+					}else{
+						return "true";
+					}
+				}catch(Exception e){
 					return "true";
 				}
+				
 			}
 		}return "false";
 	}
@@ -43,11 +48,11 @@ public class Predicados{
 
 			if(listado.get(i).contains("equals")){
 				int p = listado.get(i).indexOf("equals");
-				if(listado.get(i).size()<6){
+				if(listado.get(i).size()<5){
 					if(listado.get(i-1).equals(listado.get(i-2))){
 						return "true";
 					}
-				}else if(listado.get(i).size() == 6){
+				}else if(listado.get(i).size() == 5){
 					if(listado.get(i).get(p+1).equals(listado.get(i).get(p+2))){
 						return "true";
 					}
