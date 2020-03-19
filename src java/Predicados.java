@@ -54,27 +54,17 @@ public class Predicados{
 					String a = "";
 					String b = "";
 					int d = 0;
-					if(listado.get(i).get(p+1).contains("\"")){
-						for(int j=0; j<listado.get(i).size();j++){
-							if(!listado.get(i).get(j).contains("\"")){
-								a+= listado.get(i).get(j);
+					int rest = listado.get(i).size()-2-p;
+					int lim1 = p+(rest/2)+1;
 
-							}else if(listado.get(i).get(j).contains("\"")){
-								a+= listado.get(i).get(j);
-								d = j+1;
-								j = 500;
-								
-							}
-						}
-						b+= listado.get(i).get(d);
-						d+=1;
-						for(int z = d; z<listado.get(i).size();z++){
-							if(!listado.get(i).get(z).contains("\"")){
-								b+=listado.get(i).get(z);
-								z = 500;
-							}
-						
-						}
+					for(int j=p+1; j<lim1;j++){
+						a+= listado.get(i).get(j);
+					}for(int k = lim1;k<listado.get(i).size()-1;k++){
+						b+= listado.get(i).get(k);
+					}
+				
+					if(a.equals(b)){
+						return "true";
 					}
 					
 				}
