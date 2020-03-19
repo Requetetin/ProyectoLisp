@@ -10,7 +10,53 @@ import java.util.*;
 public class Calcular{
 
     public String operar(ArrayList<ArrayList<String>> operacion){
-        return "holaaa";
+        for (int i=0; i<operacion.size(); i++) {
+            if (operacion.get(i).contains("+")) {
+                try {
+                    int posicion = operacion.get(i).indexOf("+");
+                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+2));
+                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+1));
+                    
+                    return suma(valor1, valor2).toString();
+                } catch (Exception e) {
+                    return "Operacion invalida";
+                }
+            } else if (operacion.get(i).contains("-")) {
+                try {
+                    int posicion = operacion.get(i).indexOf("-");
+                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+2));
+                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+1));
+
+                    return resta(valor1, valor2).toString();
+                } catch (Exception e) {
+                    return "Operacion invalida";
+                }
+            } else if (operacion.get(i).contains("*")) {
+                try {
+                    int posicion = operacion.get(i).indexOf("*");
+                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+2));
+                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+1));
+
+                    return multiplicacion(valor1, valor2).toString();
+                } catch (Exception e) {
+                    return "Operacion invalida";
+                }
+            } else if (operacion.get(i).contains("/")) {
+                try {
+                    int posicion = operacion.get(i).indexOf("/");
+                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+2));
+                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+1));
+
+                    return dividir(valor1, valor2).toString();
+                } catch (Exception e) {
+                    return "Operacion invalida";
+                }
+            } else {
+                 return "Operacion no encontrada";
+            }
+        }
+        return "Operacion no encontrada";
+       
     }
 
 	/**

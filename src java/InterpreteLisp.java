@@ -121,9 +121,7 @@ public class InterpreteLisp{
 	public ArrayList<String> buscarFuncionLisp(String input){
 		ArrayList<String> mostrar = new ArrayList();
 		ArrayList<ArrayList<String>> mostrar2 = new ArrayList();
-
-		System.out.println(ingresoLisp);
-
+		
 		convertirArray(input); //Se genera el array para los metodos que lo necesiten
 		generarVoc(); //Se genera el vocabulario lisp
 
