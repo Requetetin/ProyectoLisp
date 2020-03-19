@@ -11,8 +11,9 @@ import java.util.*;
 public class InterpreteLisp{
 	ArrayList<String> listado = new ArrayList<String>();
 	ArrayList<String> vocLisp = new ArrayList<String>();
-	ArrayList<ArrayList<String>> ingresoLisp = new ArrayList<ArrayList<String>>();
+	static ArrayList<ArrayList<String>> ingresoLisp = new ArrayList<ArrayList<String>>();
 	boolean methodPrintIsFound = false;
+	static int actual = 0;
 
 	Leer print = new Leer();
 	Predicados predicados = new Predicados();
@@ -27,10 +28,11 @@ public class InterpreteLisp{
 	*/
 	private void convertirArray(String input){
 		input = input.toLowerCase();
+		actual = 0;
+		ingresoLisp = new ArrayList<ArrayList<String>>();
 		ArrayList<String> invertido = new ArrayList<String>(); //Arraylist temporal de invertidos
 
-
-		String[] split_text = input.split(" |\n"); //Se convierte a vector por letra
+		String[] split_text = input.split(" "); //Se convierte a vector por letra
 		
 		for (int i=0; i<split_text.length; i++) {
 			invertido.add(split_text[i]); //Se crea un array con todas las letras
@@ -39,10 +41,7 @@ public class InterpreteLisp{
 		Collections.reverse(invertido); //Se invierte el orden
 
 		for (int j=0; j< invertido.size(); j++) {
-
 			ArrayList<String> temporal = new ArrayList<String>(); //Se genera un nuevo arraylist
-
-
 			if (invertido.get(j).equals("(")) { //Se busca el abierto
 				for (int k=j; k>0; k--) {  //Se busca el de cerrar apartir de la posicion del abierto
 					if (invertido.get(k).equals(")")){ //Se busca el de cerrar
@@ -59,7 +58,6 @@ public class InterpreteLisp{
 
 				}
 			}
-		
 		}
 
 		Collections.reverse(invertido); //Se revierte el orden
@@ -71,8 +69,8 @@ public class InterpreteLisp{
 	Post: Se agrega lo mas significativo al arraylist listado
 	*/
 	private void agregar(ArrayList<String> temporal){
-		listado = new ArrayList<String>();
 		StringBuilder  s=new StringBuilder();
+		listado = new ArrayList<String>();
 		boolean first = true;
 
 		if (temporal.size()>0) {
@@ -87,30 +85,20 @@ public class InterpreteLisp{
 				}
 			}
 			complete_word = s.toString(); //Se convierte el builder a String
-			listado.add(complete_word); //Se agrega la primer operacion al listado					
-		}
-	}
+			String[] complete = complete_word.split(" ");
 
-	/**
-	Post: Se crea un arraylist de arraylist con todo lo ingresado
-	*/
-	private void convertirArrayArray(){
-		ingresoLisp = new ArrayList<ArrayList<String>>();
-		for (int i=0; i<listado.size(); i++) {
-			ArrayList<String> listado2 = new ArrayList<String>();
-
-			String[] split_text = listado.get(i).split(" "); //Se convierte a vector por espacio
-
-			for (int j=0; j<split_text.length; j++) {
-				if (!split_text[j].equals("")) {
-					listado2.add(split_text[j]);	
-				}
-				
+			for (int i = 0; i<complete.length; i++) {
+				listado.add(complete[i]); //Se agrega la primer operacion al listado					
 			}
 
-			ingresoLisp.add(listado2);
+
+			ingresoLisp.add(actual, listado);
+			actual++;
+			
 		}
 	}
+	/*
+	*/
 
 	/**
 	Post:
@@ -132,14 +120,16 @@ public class InterpreteLisp{
 	*/
 	public ArrayList<String> buscarFuncionLisp(String input){
 		ArrayList<String> mostrar = new ArrayList();
+		ArrayList<ArrayList<String>> mostrar2 = new ArrayList();
+
+		System.out.println(ingresoLisp);
+
 		convertirArray(input); //Se genera el array para los metodos que lo necesiten
-		convertirArrayArray(); //Se genera el arraylist de arraylist
 		generarVoc(); //Se genera el vocabulario lisp
 
 		if(print.methodPrintFound(input)){ //Print recibe el input inicial
 			mostrar.add(print.values(input));  
 		} else {
-			System.out.println(ingresoLisp);
 			for (int i=0; i<ingresoLisp.size(); i++) {
 				for (int j=0; j<vocLisp.size(); j++) {
 					if (ingresoLisp.get(i).contains(vocLisp.get(j))) {
@@ -187,8 +177,7 @@ public class InterpreteLisp{
 		}
 		if (mostrar.size() == 0) {
 			mostrar.add("Metodo no encontrado");
-		}
-
+		} 
 		return mostrar;
 	}
 	
