@@ -8,6 +8,7 @@
 * Se encarga de llevar a cabo las funciones necesarias dentro del input
 */
 import java.util.*;
+
 public class InterpreteLisp{
 	ArrayList<String> listado = new ArrayList<String>();
 	ArrayList<String> vocLisp = new ArrayList<String>();
@@ -28,11 +29,17 @@ public class InterpreteLisp{
 	*/
 	private void convertirArray(String input){
 		input = input.toLowerCase();
+
 		actual = 0;
 		ingresoLisp = new ArrayList<ArrayList<String>>();
 		ArrayList<String> invertido = new ArrayList<String>(); //Arraylist temporal de invertidos
 
-		String[] split_text = input.split(" "); //Se convierte a vector por letra
+		String[] split_text = input.split(" "); //Se convierte a vector por espacio
+		input = addSpace(split_text);
+		split_text = input.split(" "); //Se convierte a vector por espacio
+
+
+
 		
 		for (int i=0; i<split_text.length; i++) {
 			invertido.add(split_text[i]); //Se crea un array con todas las letras
@@ -98,11 +105,34 @@ public class InterpreteLisp{
 		}
 	}
 	/*
-	*/
-
 	/**
 	Post:
 	*/
+	private String addSpace(String[] input){
+		String temporal = "";
+		for (int i=0; i<input.length; i++) {
+			String str = input[i];
+			if (str.contains("(") && str.contains(")")) {
+				temporal += str;
+			} else if (!str.contains("(") && !str.contains(")")) {
+				temporal += " " + str;
+				System.out.println(temporal);
+			} else if (str.contains("(") && !str.contains(")")) {
+				str = str.replace("("," ");
+				str = " (" + str;
+				temporal += str;
+			} else if (str.contains(")") && !str.contains("(")) {
+				int temp = str.indexOf(")");
+				temporal += " " +str.substring(0, temp);
+				temporal += " ) " +str.substring(temp + 1);
+			} 
+		}
+
+		temporal = temporal.replaceAll("( )+", " ");
+		System.out.println(temporal);
+		return temporal;
+	}
+
 	private void generarVoc(){
 		vocLisp.add("atom");
 		vocLisp.add("list");
