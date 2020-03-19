@@ -18,23 +18,24 @@ public class Predicados{
 				if(listado.get(i).contains("cons")||listado.get(i).contains("list")||listado.get(p-1).contains("'")){
 					return "false";
 				}else{
-					return "true  ";
+					return "true";
 				}
 			}
 		}return "false";
 	}
 
-	public ArrayList<ArrayList<String>> funList(ArrayList<ArrayList<String>> listado){
+	public ArrayList<String> funList(ArrayList<ArrayList<String>> listado){
+		ArrayList<String> temp = new ArrayList<String>();
 		for(int i=0;i<listado.size();i++){
 			if(listado.get(i).contains("list")||listado.get(i).contains(" list")){
-				ArrayList<String> temp = new ArrayList<String>();
+				
 				temp = listado.get(i);
 				temp.remove(temp.indexOf("list"));
 				listado.set(i,temp);
-				return listado;
+				return temp;
 			}
 		}
-		return listado;
+		return temp;
 	}
 
 	public String funEquals(ArrayList<ArrayList<String>> listado){
