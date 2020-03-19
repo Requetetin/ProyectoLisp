@@ -26,6 +26,7 @@ public class InterpreteLisp{
 	Post: Se convierte el input a arraylist
 	*/
 	private void convertirArray(String input){
+		input = input.toLowerCase();
 		ArrayList<String> invertido = new ArrayList<String>(); //Arraylist temporal de invertidos
 
 
