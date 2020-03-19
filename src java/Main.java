@@ -15,7 +15,7 @@ public class Main{
 				if(input == null || input.isEmpty()){
 					break; 
     			}
-    			text += input;
+    			text += " " + input;
 			}
 
 			if (text.equals("")) {

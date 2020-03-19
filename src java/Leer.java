@@ -50,8 +50,6 @@ public class Leer{
 			methodisfound = true;
 		} else if (input.contains("print")) {
 			actualprint = input.replace("print", "");
-			methodisfound = true;			
-		} else if (input.contains("\"")) {
 			methodisfound = true;
 		} else {
 			methodisfound = false;
