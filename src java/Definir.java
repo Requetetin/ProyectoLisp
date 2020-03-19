@@ -61,24 +61,31 @@ public class Definir{
 	* @param nuevaFuncion contiene la funcioin que desea ser agregada
 	*/
 	public String setFuncion(ArrayList<ArrayList<String>> nuevaFuncion){
-		ArrayList<String> variables = new ArrayList<>();
+		ArrayList<String> variablesF = new ArrayList<>();
 		ArrayList<ArrayList<String>> funtion = new ArrayList<>();
 		String funtionName;
 
 		// Consiguiendo el nombre y las funciones
-		variables = setNombreFuncion(nuevaFuncion.get(nuevaFuncion.size() - 1));
-		funtionName = variables.get(0);
+		variablesF = setNombreFuncion(nuevaFuncion.get(nuevaFuncion.size() - 1));
+		funtionName = variablesF.get(0);
 		
 		// Eliminando el nombre y cambiandolo a mayuscular
-		variables.remove(0);
+		variablesF.remove(0);
 		funtionName = funtionName.toUpperCase();
 
 		funtion = setFuncionalidadFuncion(nuevaFuncion); // Consiguiendo el funcionamiento de la función
 
 		// Agregando las funciones 
 		this.functions.put(funtionName, funtion);
-		this.variables.put(funtionName, variables);
+		this.variables.put(funtionName, variablesF);
 
+
+		/**
+		Borrar despues
+		*/
+		System.out.println("\n\n" + funtionName);
+		System.out.println(this.functions.get(funtionName));
+		System.out.println(this.variables.get(funtionName));
 		return funtionName;
 	}
 
@@ -92,12 +99,23 @@ public class Definir{
 	 */
 	private ArrayList<String> setNombreFuncion(ArrayList<String> nombre) {
 		ArrayList<String> temporal = new ArrayList<String>();
-		String nombreS = nombre.get(2);
+		Integer index = 0;
 		String nombreAux = "", nombreAux2 = "";
 		String[] aux = new String[2];
 		Boolean flag = false;
 
+		// Encontrando el nombre con base al defun
+		for(int i = 0; i < nombre.size(); i++){
+			nombreAux = nombre.get(i).replace(" ", "");
+			if(nombreAux.equalsIgnoreCase("defun")){
+				index = i;
+			}
+		}
+
+		// Asignandole el nombre
+		String nombreS = nombre.get(index + 1);
 		// Separando los elementos
+		nombreAux = "";
 		for(int i = 0; i < nombreS.length(); i++){
 			if((nombreS.charAt(i) == '(')){
 				flag = true;
@@ -144,14 +162,12 @@ public class Definir{
 		// Agregando a una arraylist 
 		for(int i = 0; i < funtionality.size() - 2; i++){
 			for(int j = 1; j < funtionality.get(i).size() - 1; j++){
-
 				// Agregando la funcionalidad sin parentesis
-				System.out.println(funtionality.get(i).get(j));
 				aux.add(funtionality.get(i).get(j));
-
 			}
 
 			temp.add(aux);
+			
 		}
 
 		return temp;
