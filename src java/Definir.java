@@ -51,9 +51,11 @@ public class Definir{
 		// Consiguiendo el nombre y las funciones
 		variables = setNombreFuncion(nuevaFuncion.get(nuevaFuncion.size() - 1));
 		funtionName = variables.get(0);
-
+		
 		// Eliminando el nombre y cambiandolo a mayuscular
-		variables.remove(funtionName);
+		variables.remove(0);
+		System.out.print(variables.get(0));
+		System.out.print(variables.get(1));
 		funtionName = funtionName.toUpperCase();
 
 		funtion = setFuncionalidadFuncion(nuevaFuncion); // Consiguiendo el funcionamiento de la función
@@ -61,7 +63,6 @@ public class Definir{
 		// Agregando las funciones 
 		this.functions.put(funtionName, funtion);
 		this.variables.put(funtionName, variables);
-
 
 		return funtionName;
 	}
@@ -76,11 +77,28 @@ public class Definir{
 	 */
 	private ArrayList<String> setNombreFuncion(ArrayList<String> nombre) {
 		ArrayList<String> temporal = new ArrayList<String>();
-		String[] aux;
+		String nombreS = nombre.get(2);
+		String nombreAux = "", nombreAux2 = "";
+		String[] aux = new String[2];
+		Boolean flag = false;
 
 		// Separando los elementos
-		aux = nombre.get(2).split("(");
-		aux[1].replace(")", "");
+		for(int i = 0; i < nombreS.length(); i++){
+			if((nombreS.charAt(i) == '(')){
+				flag = true;
+			}else if((nombreS.charAt(i) == ')')){
+				break;
+			}else if(flag){
+				nombreAux += Character.toString(nombreS.charAt(i));
+			}else{
+				nombreAux2 += Character.toString(nombreS.charAt(i));
+			}
+
+		}		
+
+		// Agregando a las listas
+		aux[0] = nombreAux2;
+		aux[1] = nombreAux;
 
 		// Agregando el nombre
 		temporal.add(aux[0]);
