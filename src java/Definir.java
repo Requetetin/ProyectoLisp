@@ -11,8 +11,9 @@ import java.util.*;
 public class Definir{
 
 	// Se guardaran aquí las funciones y las variables
-	public Map<String, ArrayList<ArrayList<String>>> functions = new HashMap<>();
-	public Map<String, ArrayList<String>> variables = new HashMap<>();
+	private Map<String, ArrayList<ArrayList<String>>> functions = new HashMap<>();
+	private Map<String, ArrayList<String>> variables = new HashMap<>();
+	private Calcular calc = new Calcular();
 
 	/**
 	 * Se encarga de correr una función o indicar que no se encuentra
@@ -20,23 +21,28 @@ public class Definir{
 	 * @param funtion es el nombre de la función que quiere ser utilizada
 	 * @return el resultado obtenido luego de realizar la función
 	 */
-	public String runFuncion(ArrayList<String> function){
+	public String runFuncion(ArrayList<ArrayList<String>> function){
 		// Espacios en donde se guardaran las funciones y las variables
 		ArrayList<ArrayList<String>> funtionality = new ArrayList<>();
 		ArrayList<String> variables = new ArrayList<>();
+		ArrayList<String> replaceVariables = new ArrayList<>();
 
-		String functionName = function.get(1).toUpperCase(); // Nombre en mayusculas de la funcion
+		String functionName = function.get(0).get(1).toUpperCase(); // Nombre en mayusculas de la funcion
+		function.get(0).remove(1);
+		function.get(0).remove("(");
+		function.get(0).remove(" )");
 
 		if(functions.containsKey(functionName)){
-			// Empezando a realizar la función
+			// Consiguiendo los elementos necesarios para poder realizar la funcion
 			funtionality = functions.get(functionName);
 			variables = this.variables.get(functionName);
 
+			// Consiguiendo las variables del arraylist de arraylist
+			for(int i = 0; i < function.get(0).size(); i++){
+				replaceVariables.add(function.get(0).get(i));
+			}
+
 			// Remplazando todas las variables por 
-
-
-
-
 
 
 			return "HOLAAAA BB :3";
@@ -64,8 +70,6 @@ public class Definir{
 		
 		// Eliminando el nombre y cambiandolo a mayuscular
 		variables.remove(0);
-		System.out.print(variables.get(0));
-		System.out.print(variables.get(1));
 		funtionName = funtionName.toUpperCase();
 
 		funtion = setFuncionalidadFuncion(nuevaFuncion); // Consiguiendo el funcionamiento de la función
