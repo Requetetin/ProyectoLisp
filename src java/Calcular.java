@@ -6,11 +6,12 @@
 *
 * Realiza operaciones aritmeticas 
 */
+import java.util.*;
 public class Calcular{
 
-	public String doMath(ArrayList<> mathMePlsss){
-		return "HIIIIII BB <3";
-	}
+    public String operar(ArrayList<ArrayList<String>> operacion){
+        return "holaaa";
+    }
 
 	/**
      * Suma dos números
