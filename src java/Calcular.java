@@ -14,8 +14,8 @@ public class Calcular{
             if (operacion.get(i).contains("+")) {
                 try {
                     int posicion = operacion.get(i).indexOf("+");
-                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+2));
-                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+1));
+                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+1));
+                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+2));
                     
                     return suma(valor1, valor2).toString();
                 } catch (Exception e) {
@@ -24,8 +24,8 @@ public class Calcular{
             } else if (operacion.get(i).contains("-")) {
                 try {
                     int posicion = operacion.get(i).indexOf("-");
-                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+2));
-                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+1));
+                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+1));
+                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+2));
 
                     return resta(valor1, valor2).toString();
                 } catch (Exception e) {
@@ -34,8 +34,8 @@ public class Calcular{
             } else if (operacion.get(i).contains("*")) {
                 try {
                     int posicion = operacion.get(i).indexOf("*");
-                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+2));
-                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+1));
+                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+1));
+                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+2));
 
                     return multiplicacion(valor1, valor2).toString();
                 } catch (Exception e) {
@@ -44,8 +44,8 @@ public class Calcular{
             } else if (operacion.get(i).contains("/")) {
                 try {
                     int posicion = operacion.get(i).indexOf("/");
-                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+2));
-                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+1));
+                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+1));
+                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+2));
 
                     return dividir(valor1, valor2).toString();
                 } catch (Exception e) {
