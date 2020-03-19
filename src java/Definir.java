@@ -42,10 +42,11 @@ public class Definir{
 				replaceVariables.add(function.get(0).get(i));
 			}
 
+			
 			// Remplazando todas las variables por 
 
 
-			return "HOLAAAA BB :3";
+			return "Respuesta";
 		}else{
 
 			return "*** - EVAL: la funcion " + functionName + " no esta definida";
@@ -145,6 +146,7 @@ public class Definir{
 			for(int j = 1; j < funtionality.get(i).size() - 1; j++){
 
 				// Agregando la funcionalidad sin parentesis
+				System.out.println(funtionality.get(i).get(j));
 				aux.add(funtionality.get(i).get(j));
 
 			}
