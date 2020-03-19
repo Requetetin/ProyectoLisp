@@ -11,8 +11,8 @@ import java.util.*;
 public class Definir{
 
 	// Se guardaran aquí las funciones y las variables
-	private Map<ArrayList<String>, ArrayList<ArrayList<String>>> functions = new HashMap<>();
-	private Map<ArrayList<String>, ArrayList<String>> variables = new HashMap<>();
+	public Map<String, ArrayList<ArrayList<String>>> functions = new HashMap<>();
+	public Map<String, ArrayList<String>> variables = new HashMap<>();
 
 	/**
 	 * Se encarga de correr una función o indicar que no se encuentra
@@ -44,22 +44,24 @@ public class Definir{
 	* @param nuevaFuncion contiene la funcioin que desea ser agregada
 	*/
 	public String setFuncion(ArrayList<ArrayList<String>> nuevaFuncion){
-		ArrayList<ArrayList<String>> temporal = new ArrayList<>();
+		ArrayList<String> variables = new ArrayList<>();
 		ArrayList<ArrayList<String>> funtion = new ArrayList<>();
-		String funtionName = "";
+		String funtionName;
 
-		temporal = setNombreFuncion(nuevaFuncion.get(nuevaFuncion.size() - 1), nuevaFuncion.get(nuevaFuncion.size() - 2)); // Mandando el nombre
+		// Consiguiendo el nombre y las funciones
+		variables = setNombreFuncion(nuevaFuncion.get(nuevaFuncion.size() - 1));
+		funtionName = variables.get(0);
+
+		// Eliminando el nombre y cambiandolo a mayuscular
+		variables.remove(funtionName);
+		funtionName = funtionName.toUpperCase();
 
 		funtion = setFuncionalidadFuncion(nuevaFuncion); // Consiguiendo el funcionamiento de la función
 
 		// Agregando las funciones 
-		this.functions.put(temporal.get(0), funtion);
-		this.variables.put(temporal.get(0), temporal.get(1));
+		this.functions.put(funtionName, funtion);
+		this.variables.put(funtionName, variables);
 
-		// Pasando el nombre de la funcion en mayusculas
-		for(int i = 0; i < temporal.get(0).size(); i++){	
-			funtionName += temporal.get(0).get(i);
-		}
 
 		return funtionName;
 	}
@@ -67,36 +69,29 @@ public class Definir{
 	/**
 	 * Se encarga de encontrar el nombre de la función y devolverlo para su uso
 	 * @pre el nombre de la función esta mesclado con otros datos
-	 * @pos el nombre de la función esta separado
-	 * @param nombre contiene el nombre de la función
-	 * @param variables son las variables 
-	 * @return el nombre de la función en mayúsculas
+	 * @pos el nombre y las variables estan separados
+	 * @param nombre contiene el nombre de la función y las variables que necesitas ser agregadas
+	 * @return el nombre de la funcion y todas las variables
 	 * *Utilizado en setFuncion
 	 */
-	private ArrayList<ArrayList<String>> setNombreFuncion(ArrayList<String> nombre, ArrayList<String> variables) {
-		ArrayList<ArrayList<String>> temporal = new ArrayList<>();
-		ArrayList<String> aux = new ArrayList<>();
+	private ArrayList<String> setNombreFuncion(ArrayList<String> nombre) {
+		ArrayList<String> temporal = new ArrayList<String>();
+		String[] aux;
 
-		// Consiguiendo el nombre de la función
-		for(int i = 6; i < nombre.size(); i++){
-			
-			if(nombre.get(i).equals(" \"")){
-				break;
-			}
-			aux.add(nombre.get(i).toUpperCase());
+		// Separando los elementos
+		aux = nombre.get(2).split("(");
+		aux[1].replace(")", "");
+
+		// Agregando el nombre
+		temporal.add(aux[0]);
+
+		// Separando todas las variables
+		aux = aux[1].split(",");
+
+		// Agregando todas las variables
+		for(int i = 0; i < aux.length; i++){
+			temporal.add(aux[i]);
 		}
-
-		// Metiendo el nombre
-		temporal.add(aux);
-		aux.clear();
-
-		// Consiguiendo los parametros de la funcion 
-		for(int i = 1; i < variables.size() - 2; i++){
-			aux.add(variables.get(i));
-		}
-
-		// Metiendo las variables
-		temporal.add(aux);
 
 		return temporal;
 	}
@@ -114,8 +109,8 @@ public class Definir{
 		ArrayList<String> aux = new ArrayList<>();
 
 		// Agregando a una arraylist 
-		for(int i = 0; i < funtionality.size() - 3; i++){
-			for(int j = 1; j < funtionality.get(i).size() - 2; j++){
+		for(int i = 0; i < funtionality.size() - 2; i++){
+			for(int j = 1; j < funtionality.get(i).size() - 1; j++){
 
 				// Agregando la funcionalidad sin parentesis
 				aux.add(funtionality.get(i).get(j));
