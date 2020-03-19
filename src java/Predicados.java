@@ -39,14 +39,49 @@ public class Predicados{
 
 	public String funEquals(ArrayList<ArrayList<String>> listado){
 		for(int i=0; i<listado.size();i++){
+
 			if(listado.get(i).contains("equals")){
 				int p = listado.get(i).indexOf("equals");
-				if(listado.get(i).get(p-1).equals(listado.get(i).get(p-2))){
-					return "true";
+				if(listado.get(i).size()<6){
+					if(listado.get(i-1).equals(listado.get(i-2))){
+						return "true";
+					}
+				}else if(listado.get(i).size() == 6){
+					if(listado.get(i).get(p+1).equals(listado.get(i).get(p+2))){
+						return "true";
+					}
 				}else{
+					String a = "";
+					String b = "";
+					int d = 0;
+					if(listado.get(i).get(p+1).contains("\"")){
+						for(int j=0; j<listado.get(i).size();j++){
+							if(!listado.get(i).get(j).contains("\"")){
+								a+= listado.get(i).get(j);
+
+							}else if(listado.get(i).get(j).contains("\"")){
+								a+= listado.get(i).get(j);
+								d = j+1;
+								j = 500;
+								
+							}
+						}
+						b+= listado.get(i).get(d);
+						d+=1;
+						for(int z = d; z<listado.get(i).size();z++){
+							if(!listado.get(i).get(z).contains("\"")){
+								b+=listado.get(i).get(z);
+								z = 500;
+							}
+						
+						}
+					}
+					
+				}
+				
+			}else{
 					return "false";
 				}
-			}
 		}
 		return "false";
 	}
