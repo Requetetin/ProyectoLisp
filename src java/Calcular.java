@@ -8,6 +8,11 @@
 */
 public class Calcular{
 
+	public String doMath(ArrayList<> mathMePlsss){
+		return "HIIIIII BB <3";
+	}
+
+
 	/**
      * Suma dos números
      * @post crea un número resultante de la suma de los dos enviados
@@ -15,7 +20,7 @@ public class Calcular{
      * @param numero2 es el segundo número que se sumara con el primero
      * @return devuelve la suma de los dos números
      */
-	public Integer suma(Integer numero1, Integer numero2){
+	protected Integer suma(Integer numero1, Integer numero2){
 		return numero1 + numero2;
 	}
 
@@ -26,7 +31,7 @@ public class Calcular{
      * @param numero2 es el segundo número que se restara del primero
      * @return devuelve la resta de los dos números
      */
-	public Integer resta(Integer numero1, Integer numero2){
+	protected Integer resta(Integer numero1, Integer numero2){
 		return numero1 - numero2;
 	}
 
@@ -37,7 +42,7 @@ public class Calcular{
      * @param numero2 es el segundo número que se multiplicara con el primero
      * @return devuelve la multilplicacion de los dos números
      */
-	public Integer multiplicacion(Integer numero1, Integer numero2){
+	protected Integer multiplicacion(Integer numero1, Integer numero2){
 		return numero1*numero2;
 	}
 
@@ -48,7 +53,7 @@ public class Calcular{
      * @param numero2 es el segundo número es el dividendo
      * @return devuelve la division de los dos números
      */
-	public Integer dividir(Integer numero1, Integer numero2){
+	protected Integer dividir(Integer numero1, Integer numero2){
 		try{
             return numero1/numero2;
         }catch(ArithmeticException e){
