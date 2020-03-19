@@ -110,6 +110,8 @@ public class InterpreteLisp{
 	*/
 	private String addSpace(String[] input){
 		String temporal = "";
+		boolean first = true;
+
 		for (int i=0; i<input.length; i++) {
 			String str = input[i];
 			if (str.contains("(") && str.contains(")")) {
@@ -127,7 +129,14 @@ public class InterpreteLisp{
 			} 
 		}
 
-		temporal = temporal.replaceAll("( )+", " ");
+		StringTokenizer st = new StringTokenizer(temporal, " ");
+		StringBuffer sb = new StringBuffer();
+		 
+		while(st.hasMoreElements()){
+		    sb.append(st.nextElement()).append(" ");
+		}
+		 
+		temporal = sb.toString();
 		return temporal;
 	}
 
