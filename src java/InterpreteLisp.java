@@ -120,7 +120,7 @@ public class InterpreteLisp{
 				temporal += " " + str;
 			} else if (str.contains("(") && !str.contains(")")) {
 				str = str.replace("("," ");
-				str = " (" + str;
+				str = " ( " + str;
 				temporal += str;
 			} else if (str.contains(")") && !str.contains("(")) {
 				int temp = str.indexOf(")");
