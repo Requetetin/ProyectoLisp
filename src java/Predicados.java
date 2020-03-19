@@ -62,12 +62,13 @@ public class Predicados{
 				a = Integer.parseInt(listado.get(i-2).get(2));
 				b = Integer.parseInt(listado.get(i-2).get(3));
 				c = listado.get(i-2).get(1);
+			
 
 				switch(c){
 					case ">":
 					if(a > b){
 						for(int j=1;j<listado.get(i-1).size()-1;j++){
-						s+= listado.get(i-1).get(j);
+							s+= listado.get(i-1).get(j);
 						}
 						return s;
 					}else{
@@ -79,41 +80,47 @@ public class Predicados{
 								if(a > b){
 								for(int j=1;j<listado.get(i-3).size()-1;j++){
 									s+= listado.get(i-3).get(j);
-									}	
+									}
+									return s;	
 								}else{
 								for(int j=1;j<listado.get(i-6).size()-1;j++){
 									s+= listado.get(i-6).get(j);
 									}
+									return s;
 								}
-							 break;
+							 
 							case "<":
 								if(a < b){
 								for(int j=1;j<listado.get(i-3).size()-1;j++){
 									s+= listado.get(i-3).get(j);
 									}	
+									return s;
 								}else{
 								for(int j=1;j<listado.get(i-6).size()-1;j++){
 									s+= listado.get(i-6).get(j);
 									}
+									return s;
 								}
-							 break;
+							 
 
 							case "=":
 								if(a == b){
 								for(int j=1;j<listado.get(i-3).size()-1;j++){
 									s+= listado.get(i-3).get(j);
 									}	
+									return s;
 								}else{
 								for(int j=1;j<listado.get(i-6).size()-1;j++){
 									s+= listado.get(i-6).get(j);
 									}
+									return s;
 								}
-							 break;
+							 
 						}
 					}
 					
 					
-					 break;
+					 
 
 					case "<":
 					if(a < b){
@@ -131,35 +138,40 @@ public class Predicados{
 								for(int j=1;j<listado.get(i-3).size()-1;j++){
 									s+= listado.get(i-3).get(j);
 									}	
+									return s;
 								}else{
 								for(int j=1;j<listado.get(i-6).size()-1;j++){
 									s+= listado.get(i-6).get(j);
 									}
+									return s;
 								}
-							 break;
 							case "<":
 								if(a < b){
 								for(int j=1;j<listado.get(i-3).size()-1;j++){
 									s+= listado.get(i-3).get(j);
 									}	
+									return s;
 								}else{
 								for(int j=1;j<listado.get(i-6).size()-1;j++){
 									s+= listado.get(i-6).get(j);
 									}
+									return s;
 								}
-							 break;
+							 
 
 							case "=":
 								if(a == b){
 								for(int j=1;j<listado.get(i-3).size()-1;j++){
 									s+= listado.get(i-3).get(j);
-									}	
+									}
+									return s;	
 								}else{
 								for(int j=1;j<listado.get(i-6).size()-1;j++){
 									s+= listado.get(i-6).get(j);
 									}
+									return s;
 								}
-							 break;
+							 
 						}
 					}
 					
@@ -180,35 +192,40 @@ public class Predicados{
 								for(int j=1;j<listado.get(i-3).size()-1;j++){
 									s+= listado.get(i-3).get(j);
 									}	
+									return s;
 								}else{
 								for(int j=1;j<listado.get(i-6).size()-1;j++){
 									s+= listado.get(i-6).get(j);
 									}
+									return s;
 								}
-							 break;
+							 
 							case "<":
 								if(a < b){
 								for(int j=1;j<listado.get(i-3).size()-1;j++){
 									s+= listado.get(i-3).get(j);
 									}	
+									return s;
 								}else{
 								for(int j=1;j<listado.get(i-6).size()-1;j++){
 									s+= listado.get(i-6).get(j);
 									}
+									return s;
 								}
-							 break;
-
+							 
 							case "=":
 								if(a == b){
 								for(int j=1;j<listado.get(i-3).size()-1;j++){
 									s+= listado.get(i-3).get(j);
 									}	
+									return s;
 								}else{
 								for(int j=1;j<listado.get(i-6).size()-1;j++){
 									s+= listado.get(i-6).get(j);
 									}
+									return s;
 								}
-							 break;
+							 
 						}
 					}
 					
