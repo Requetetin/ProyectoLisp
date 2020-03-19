@@ -176,6 +176,7 @@ public class InterpreteLisp{
 					break;
 					}	
 				}
+				break;
 			}
 		}
 		if (mostrar.size() == 0) {
