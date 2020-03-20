@@ -10,44 +10,50 @@ import java.util.*;
 public class Calcular{
 
     public String operar(ArrayList<ArrayList<String>> operacion){
+
+
         for (int i=0; i<operacion.size(); i++) {
             if (operacion.get(i).contains("+")) {
                 try {
                     int posicion = operacion.get(i).indexOf("+");
-                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+1));
-                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+2));
+                    float valor1 = (float)Float.parseFloat(operacion.get(i).get(posicion+1));
+                    float valor2 = (float)Float.parseFloat(operacion.get(i).get(posicion+2));
                     
-                    return suma(valor1, valor2).toString();
+                    return Float.toString(suma(valor1, valor2));
                 } catch (Exception e) {
                     return "Operacion invalida";
                 }
             } else if (operacion.get(i).contains("-")) {
                 try {
-                    int posicion = operacion.get(i).indexOf("-");
-                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+1));
-                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+2));
+                	int posicion = operacion.get(i).indexOf("-");
 
-                    return resta(valor1, valor2).toString();
+		        	System.out.println("LLEGA A CALCULAR " + operacion.get(i).get(i+1));
+		        	System.out.println("LLEGA A CALCULAR " + operacion.get(i).get(i+2));
+                    
+                    float valor1 = (float)Float.parseFloat(operacion.get(i).get(posicion+1));
+                    float valor2 = (float)Float.parseFloat(operacion.get(i).get(posicion+2));
+
+                    return Float.toString(resta(valor1, valor2));
                 } catch (Exception e) {
                     return "Operacion invalida";
                 }
             } else if (operacion.get(i).contains("*")) {
                 try {
                     int posicion = operacion.get(i).indexOf("*");
-                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+1));
-                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+2));
+                    float valor1 = (float)Float.parseFloat(operacion.get(i).get(posicion+1));
+                    float valor2 = (float)Float.parseFloat(operacion.get(i).get(posicion+2));
 
-                    return multiplicacion(valor1, valor2).toString();
+                    return Float.toString(multiplicacion(valor1, valor2));
                 } catch (Exception e) {
                     return "Operacion invalida";
                 }
             } else if (operacion.get(i).contains("/")) {
                 try {
                     int posicion = operacion.get(i).indexOf("/");
-                    int valor1 =Integer.parseInt(operacion.get(i).get(posicion+1));
-                    int valor2 =Integer.parseInt(operacion.get(i).get(posicion+2));
+                    float valor1 = (float)Float.parseFloat(operacion.get(i).get(posicion+1));
+                    float valor2 = (float)Float.parseFloat(operacion.get(i).get(posicion+2));
 
-                    return dividir(valor1, valor2).toString();
+                    return Float.toString(dividir(valor1, valor2));
                 } catch (Exception e) {
                     return "Operacion invalida";
                 }
@@ -66,7 +72,7 @@ public class Calcular{
      * @param numero2 es el segundo número que se sumara con el primero
      * @return devuelve la suma de los dos números
      */
-	public Integer suma(Integer numero1, Integer numero2){
+	public float suma(float numero1, float numero2){
 		return numero1 + numero2;
 	}
 
@@ -77,7 +83,7 @@ public class Calcular{
      * @param numero2 es el segundo número que se restara del primero
      * @return devuelve la resta de los dos números
      */
-	public Integer resta(Integer numero1, Integer numero2){
+	public float resta(float numero1, float numero2){
 		return numero1 - numero2;
 	}
 
@@ -88,7 +94,7 @@ public class Calcular{
      * @param numero2 es el segundo número que se multiplicara con el primero
      * @return devuelve la multilplicacion de los dos números
      */
-	public Integer multiplicacion(Integer numero1, Integer numero2){
+	public float multiplicacion(float numero1, float numero2){
 		return numero1*numero2;
 	}
 
@@ -99,11 +105,11 @@ public class Calcular{
      * @param numero2 es el segundo número es el dividendo
      * @return devuelve la division de los dos números
      */
-	public Integer dividir(Integer numero1, Integer numero2){
+	public float dividir(float numero1, float numero2){
 		try{
             return numero1/numero2;
         }catch(ArithmeticException e){
-            return 0;
+            return 0.0f;
         }
 	}
 
