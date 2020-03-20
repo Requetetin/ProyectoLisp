@@ -37,10 +37,6 @@ public class Definir{
 		String resultado = "HOLA BB <3 :3";
 
 		// Agregando los operadores matematicos
-		operadoresAritmeticos.add(" +");
-		operadoresAritmeticos.add(" -");
-		operadoresAritmeticos.add(" *");
-		operadoresAritmeticos.add(" /");
 		operadoresAritmeticos.add("+");
 		operadoresAritmeticos.add("-");
 		operadoresAritmeticos.add("*");
@@ -258,9 +254,9 @@ public class Definir{
 		Borrar despues
 		*/
 		System.out.println("\nInfo Metodo:");
-		System.out.println(this.functions.get(functionName));
-		System.out.println(this.variables.get(functionName));
-		System.out.println(this.oldFunction.get(functionName));
+		System.out.println("FUNCIONES" + this.functions.get(functionName));
+		System.out.println("VARIABLES FUN" + this.variables.get(functionName));
+		System.out.println("??"+this.oldFunction.get(functionName));
 
 		return functionName;
 	}
