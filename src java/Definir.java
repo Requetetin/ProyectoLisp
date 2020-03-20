@@ -13,6 +13,9 @@ public class Definir{
 	// Se guardaran aquí las funciones y las variables
 	private Map<String, ArrayList<String>> functions = new HashMap<>();
 	private Map<String, ArrayList<String>> variables = new HashMap<>();
+	private ArrayDeque<String> container = new ArrayDeque<>();
+
+	// Instancias personales
 	private Calcular calc = new Calcular();
 	private Predicados predicate = new Predicados();
 
@@ -27,15 +30,31 @@ public class Definir{
 		ArrayList<String> funtionality = new ArrayList<>();
 		ArrayList<String> variables = new ArrayList<>();
 		ArrayList<String> replaceVariables = new ArrayList<>();
-		Boolean flag = false; // Verifica si hay un cond()
+
+		// Para realizar las operaciones matematicas
+		ArrayList<String> operadoresAritmeticos = new ArrayList<>();
+
+
+		// Banderas
+		Boolean logic = false, aritmetico = false; // Verifica si hay un cond()
 		String resultado = "HOLA BB <3 :3";
+
+		// Agregando los operadores matematicos
+		operadoresAritmeticos.add(" +");
+		operadoresAritmeticos.add(" -");
+		operadoresAritmeticos.add(" *");
+		operadoresAritmeticos.add(" /");
+		operadoresAritmeticos.add("+");
+		operadoresAritmeticos.add("-");
+		operadoresAritmeticos.add("*");
+		operadoresAritmeticos.add("/");
+		//-------------------------------------	
+
 
 		String functionName = function.get(0).get(1).toUpperCase(); // Nombre en mayusculas de la funcion
 		function.get(0).remove(1);
 		function.get(0).remove("(");
-		function.get(0).remove(" )");
-
-		System.out.println(functionName);
+		function.get(0).remove(function.size());
 
 		// Consiguiendo los elementos necesarios para poder realizar la funcion
 		funtionality = functions.get(functionName);
@@ -53,10 +72,12 @@ public class Definir{
 			for(int i = 0; i < funtionality.size(); i++){ // Recorriendo el arraylist
 				
 				for(int j = 0; j < replaceVariables.size(); j++){ // Trata de remplazar si es una variable
-					funtionality.get(i).replace(variables.get(j), replaceVariables.get(j));
+					if(funtionality.get(i).equalsIgnoreCase(variables.get(j))){
+						funtionality.set(i, replaceVariables.get(j));
+					}
 
 					if(funtionality.get(i).equalsIgnoreCase(" cond")){ // Verificando si tiene un cond
-						flag = true;
+						logic = true;
 					}
 
 				}
@@ -66,17 +87,34 @@ public class Definir{
 			System.out.println("---- K " + funtionality);
 
 			// Empieza la ejecución del programa verificando en donde empieza
-			if(flag){
+			if(logic){
 
 
 
 
 			}else{
 
+				// Realizando sin recursividad 
+				for(int i = 0; i < funtionality.size(); i++){
 
+					// Verificando si ya paso por un operador aritmetico o ya esta pasando
+					container.add(funtionality.get(i));
+					
+					if(operadoresAritmeticos.contains(funtionality.get(i)) || aritmetico){ 
+						aritmetico = true; // Ya hubo un operador aritmetico
+						if(container.size() == 3){ // Esperando a que hayan elementos suficientes
+							refresh();
+							container.add(calc.operar(convertArrayList(3)));
+						}
+					}
+
+				}
 
 			}
 
+
+			// Consiguiendo el valor final 
+			resultado = container.removeFirst();
 
 			return resultado;
 		}else{ // Cuando ! [x,y].size() == [3, 3, 8].size() 
@@ -84,6 +122,50 @@ public class Definir{
 
 		}
 		
+	}
+
+	/**
+	* Se encarga de crear un array list de arraylist 
+	* @pre los datos son de tipo string o arraylist string 
+	* @pos los datos estan en un arraylist de arraylist string
+	* @param cant cantidad de elementos que se quieren convertir de la base de datos 
+	* @return los datos ya convertidos
+	*/
+	private ArrayList<ArrayList<String>> convertArrayList(Integer cant){
+		ArrayList<ArrayList<String>> dReturn = new ArrayList<>();
+		ArrayList<String> aux = new ArrayList<>();
+
+		// Metiendo los datos
+		for(int i = 0; i < cant; i++){
+			aux.add(container.removeFirst());			
+		}
+
+		System.out.println(aux);
+		dReturn.add(aux);
+		return dReturn;
+	} 
+
+	/**
+	* Se encarga de hacer que el valor aritmetico vaya primero luego los nombres
+	* @pre los elementos del contenedor no son aceptados por calcular 
+	* @pos los elementos son aceptados por calcular
+	*/
+	private void refresh(){
+		String temp, aux;
+
+		try{
+			Integer.parseInt(container.element()); // Verificando si es numero u operador
+
+			// Cambiando los valores para que quede el operador aritmetico en la primera posicion
+			temp = container.removeFirst(); // Numero
+			aux = container.removeFirst(); // Operador aritmetico
+ 
+			container.addFirst(temp);
+			container.addFirst(aux);
+
+		}catch(Exception e){
+			return;
+		}
 	}
 
 	/**
@@ -127,7 +209,6 @@ public class Definir{
 		Borrar despues
 		*/
 		System.out.println("\nInfo Metodo:");
-		System.out.println(funtionName);
 		System.out.println(this.functions.get(funtionName));
 		System.out.println(this.variables.get(funtionName));
 		return funtionName;
