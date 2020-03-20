@@ -35,63 +35,71 @@ public class Definir{
 		function.get(0).remove("(");
 		function.get(0).remove(" )");
 
-		if(functions.containsKey(functionName)){
+		System.out.println(functionName);
 
-			// Consiguiendo los elementos necesarios para poder realizar la funcion
-			funtionality = functions.get(functionName);
-			variables = this.variables.get(functionName);
+		// Consiguiendo los elementos necesarios para poder realizar la funcion
+		funtionality = functions.get(functionName);
+		variables = this.variables.get(functionName);
 
-			// Consiguiendo las variables del arraylist de arraylist
-			for(int i = 0; i < function.get(0).size(); i++){
-				replaceVariables.add(function.get(0).get(i).replace(" ", ""));
-			}
+		// Consiguiendo las variables del arraylist de arraylist
+		for(int i = 0; i < function.get(0).size(); i++){
+			replaceVariables.add(function.get(0).get(i).replace(" ", ""));
+		}
 
-			// Verificando que tenga la misma longitud de parametros que variables en la funcion
-			if(replaceVariables.size() == variables.size()){
-				
-				// Cambiando todas las variables por números mandados por el usuario
-				for(int i = 0; i < funtionality.size(); i++){ // Recorriendo el arraylist
-					for(int j = 0; j < funtionality.get(i).size(); j++){ // Recorriendo el arraylist que esta adentro de otra
+		// Verificando que tenga la misma longitud de parametros que variables en la funcion
+		if(replaceVariables.size() == variables.size()){
+			
+			// Cambiando todas las variables por números mandados por el usuario
+			for(int i = 0; i < funtionality.size(); i++){ // Recorriendo el arraylist
+				for(int j = 0; j < funtionality.get(i).size(); j++){ // Recorriendo el arraylist que esta adentro de otra
 
-						for(int k = 0; k < replaceVariables.size(); k++){ // Trata de remplazar si es una variable
-							funtionality.get(i).get(j).replace(variables.get(k), replaceVariables.get(k));
+					for(int k = 0; k < replaceVariables.size(); k++){ // Trata de remplazar si es una variable
+						funtionality.get(i).get(j).replace(variables.get(k), replaceVariables.get(k));
 
-							if(funtionality.get(i).get(j).equalsIgnoreCase(" cond")){ // Verificando si tiene un cond
-								flag = true;
-							}
-
+						if(funtionality.get(i).get(j).equalsIgnoreCase(" cond")){ // Verificando si tiene un cond
+							flag = true;
 						}
 
 					}
+
 				}
-
-
-				// Empieza la ejecución del programa WUUUUU ESO PERROS 
-				
-
-
-
-
-
-
-				return resultado;
-			}else{ // Cuando ! [x,y].size() == [3, 3, 8].size() 
-				return "*** - EVAL/APPLAY: se han entregado demasiados argumentos a " + functionName;
-
 			}
-			
-		}else{
 
-			return "*** - EVAL: la funcion " + functionName + " no esta definida";
+			System.out.println("---- K " + funtionality);
+
+			// Empieza la ejecución del programa WUUUUU ESO PERROS 
+
+
+
+
+
+
+
+			return resultado;
+		}else{ // Cuando ! [x,y].size() == [3, 3, 8].size() 
+			return "*** - EVAL/APPLAY: se han entregado demasiados argumentos a " + functionName;
+
 		}
-
+		
 	}
+
+	/**
+	* Da a conocer al exterior si posee la llave o no 
+	* @pos da una vista al mundo si esta la funcion
+	* @param function es el nombre de la funcion que quiere ser validada
+	* @return si la contiene o no
+	*/
+	public Boolean hasKey(ArrayList<ArrayList<String>> function){
+		return functions.containsKey(function.get(0).get(1).toUpperCase()); 
+	}
+
 
 	/**
 	* Se encarga de agregar una nueva funcin al mapa
 	* @pre hay una n cantidad de funciones y variables
 	* @pos hay una cantidad (n + 1) de funciones y variables
 	* @param nuevaFuncion contiene la funcioin que desea ser agregada
+	* @return el nombre de la funcion en mayusculas
 	*/
 	public String setFuncion(ArrayList<ArrayList<String>> nuevaFuncion){
 		ArrayList<String> variablesF = new ArrayList<>();
@@ -185,8 +193,8 @@ public class Definir{
 	 * Guarda la función de tal manera que pueda ser ejecutada más adelante
 	 * @pre se cuenta con una la función sin funcionamiento
 	 * @pos se cuenta con la función lista para su lectura
-	 * @param función que se quiere agregar
-	 * @return un string con la función lista para ser leida
+	 * @param función la funcionalidad de la funcion 
+	 * @return un arraylist de string de un arraylist con el funcionamiento
 	 * *Utilizado en setFuncion
 	 */
 	private ArrayList<ArrayList<String>> setFuncionalidadFuncion(ArrayList<ArrayList<String>> funtionality){
