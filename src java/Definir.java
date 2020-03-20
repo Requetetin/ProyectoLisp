@@ -27,6 +27,8 @@ public class Definir{
 		ArrayList<ArrayList<String>> funtionality = new ArrayList<>();
 		ArrayList<String> variables = new ArrayList<>();
 		ArrayList<String> replaceVariables = new ArrayList<>();
+		Boolean flag = false; // Verifica si hay un cond()
+		String resultado = "HOLA BB <3 :3";
 
 		String functionName = function.get(0).get(1).toUpperCase(); // Nombre en mayusculas de la funcion
 		function.get(0).remove(1);
@@ -41,26 +43,49 @@ public class Definir{
 
 			// Consiguiendo las variables del arraylist de arraylist
 			for(int i = 0; i < function.get(0).size(); i++){
-				replaceVariables.add(function.get(0).get(i));
+				replaceVariables.add(function.get(0).get(i).replace(" ", ""));
 			}
 
+			// Verificando que tenga la misma longitud de parametros que variables en la funcion
+			if(replaceVariables.size() == variables.size()){
+				
+				// Cambiando todas las variables por números mandados por el usuario
+				for(int i = 0; i < funtionality.size(); i++){ // Recorriendo el arraylist
+					for(int j = 0; j < funtionality.get(i).size(); j++){ // Recorriendo el arraylist que esta adentro de otra
+
+						for(int k = 0; k < replaceVariables.size(); k++){ // Trata de remplazar si es una variable
+							funtionality.get(i).get(j).replace(variables.get(k), replaceVariables.get(k));
+
+							if(funtionality.get(i).get(j).equalsIgnoreCase(" cond")){ // Verificando si tiene un cond
+								flag = true;
+							}
+
+						}
+
+					}
+				}
+
+
+				// Empieza la ejecución del programa WUUUUU ESO PERROS 
+				
+
+
+
+
+
+
+				return resultado;
+			}else{ // Cuando ! [x,y].size() == [3, 3, 8].size() 
+				return "*** - EVAL/APPLAY: se han entregado demasiados argumentos a " + functionName;
+
+			}
 			
-			// Remplazando todas las variables por los valores obtenidos
-
-
-
-			return "Respuesta";
 		}else{
 
 			return "*** - EVAL: la funcion " + functionName + " no esta definida";
 		}
 
 	}
-
-	private ArrayList<ArrayList<String>> runningFunction(ArrayList<ArrayList<String>> data){
-		return null;
-	}
-
 
 	/**
 	* Se encarga de agregar una nueva funcin al mapa
@@ -91,10 +116,10 @@ public class Definir{
 		/**
 		Borrar despues
 		*/
-		System.out.println("sdfasdfsadfsdfsadfddddddddddddddddddddddddddddddd");
-		System.out.println("sdfdasf\n\n" + funtionName);
-		System.out.println("323232\n" + this.functions.get(funtionName));
-		System.out.println("PTMMMM" + this.variables.get(funtionName));
+		System.out.println("\nInfo Metodo:");
+		System.out.println(funtionName);
+		System.out.println(this.functions.get(funtionName));
+		System.out.println(this.variables.get(funtionName));
 		return funtionName;
 	}
 
@@ -169,16 +194,20 @@ public class Definir{
 		ArrayList<String> aux = new ArrayList<>();
 
 		// Agregando a una arraylist 
-		for(int i = 0; i < funtionality.size() - 2; i++){
+		for(int i = 0; i < funtionality.size() - 1; i++){
 			for(int j = 1; j < funtionality.get(i).size() - 1; j++){
 				// Agregando la funcionalidad sin parentesis
 				aux.add(funtionality.get(i).get(j));
 			}
 
 			temp.add(aux);
-			
 		}
 
+		// Quitando hasta que solo quede un funcionamiento 
+		while(temp.size() != 1){
+			temp.remove(0);
+		}
+		
 		return temp;
 	}
 
