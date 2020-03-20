@@ -8,10 +8,11 @@
 */
 import java.util.*;
 public class Calcular{
-
+    /**
+     * @param operacion Recibe los operandos y la operadores
+     * @return devuelve la operacion realizada por el operando
+     */
     public String operar(ArrayList<ArrayList<String>> operacion){
-
-
         for (int i=0; i<operacion.size(); i++) {
             if (operacion.get(i).contains("+")) {
                 try {
@@ -26,9 +27,6 @@ public class Calcular{
             } else if (operacion.get(i).contains("-")) {
                 try {
                 	int posicion = operacion.get(i).indexOf("-");
-
-		        	System.out.println("LLEGA A CALCULAR " + operacion.get(i).get(i+1));
-		        	System.out.println("LLEGA A CALCULAR " + operacion.get(i).get(i+2));
                     
                     float valor1 = (float)Float.parseFloat(operacion.get(i).get(posicion+1));
                     float valor2 = (float)Float.parseFloat(operacion.get(i).get(posicion+2));

@@ -1,3 +1,12 @@
+/**
+* @author Andrea Amaya 19357
+* @author Martin Amado 19020
+* @author Brandon Hernández 19376
+*
+*
+* Encargada de recibir lo ingresado por el usuario
+*/
+
 import java.util.*;
 
 public class Main{
@@ -15,7 +24,7 @@ public class Main{
 				if(input == null || input.isEmpty()){
 					break; 
     			}
-    			text += input;
+    			text += " " +input;
 			}
 
 			if (text.equals("")) {
@@ -26,4 +35,6 @@ public class Main{
 			
 		}
 	}
+
+
 }

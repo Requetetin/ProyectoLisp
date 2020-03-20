@@ -114,6 +114,9 @@ public class InterpreteLisp{
 	*/
 	private String addSpace(String[] input){
 		String[] temporal;
+
+
+
 		String str = "";
 		String temporal2 = "";
 
@@ -122,8 +125,12 @@ public class InterpreteLisp{
 			int contador1 = 0;
 			int contador2 = 0;
 
+
 			str = input[j];
 			temporal = str.split("");
+			str += " ";
+
+
 			//Se cuenta cuantos parentesis hay por string temporal
 			for (int i=0; i<temporal.length; i++) {
 				if (temporal[i].equals(")")) {
@@ -132,36 +139,27 @@ public class InterpreteLisp{
 					contador2++;
 				}
 			}
+
 			//Si hay mas de dos, se agrega un espacio
 			if (contador1 > 1) {
 				str = str.replaceAll("\\)"," ) ");
-			} if (contador2 > 1) {
+			} else if (contador1==1 && contador2==0) {
+				str = str.replaceAll("\\)"," ) ");
+			} 
+
+			if (contador2 > 1) {
+				str = str.replaceAll("\\("," ( ");
+			} else if (contador2==1 && contador1==0) {
 				str = str.replaceAll("\\("," ( ");
 			}
+
+			if (str.equals(")(")) {
+				str = " ) ( ";
+			}
+
 			//Se agrega al nuevo string
 			temporal2 += " " + str;
-		}
-		//Se separa el nuevo string por cada espacio
-		input = temporal2.split(" ");
-		temporal2 = "";
-		//Se agregan los espacios necesarios
-		for (int i=0; i<input.length; i++) {
-			str = input[i];
-			if (str.contains("(") && str.contains(")")) {
-				int temp = str.indexOf(")");
-				temporal2 += " " +str.substring(0, temp);
-				temporal2 += " ( " +str.substring(temp + 1);
-			} else if (!str.contains("(") && !str.contains(")")) {
-				temporal2 += " " + str;
-			} else if (str.contains("(") && !str.contains(")")) {
-				str = str.replace("("," ");
-				str = " ( " + str;
-				temporal2 += str;
-			} else if (str.contains(")") && !str.contains("(")) {
-				int temp = str.indexOf(")");
-				temporal2 += " " +str.substring(0, temp);
-				temporal2 += " ) " +str.substring(temp + 1);
-			} 
+
 		}
 
 		StringTokenizer st = new StringTokenizer(temporal2, " ");
@@ -207,7 +205,7 @@ public class InterpreteLisp{
 		System.out.println(ingresoLisp);
 
 		if(print.methodPrintFound(input)){ //Print recibe el input inicial
-			mostrar.add(print.values(input));  
+			mostrar.add(print.values());  
 		} else {
 			for (int j=0; j<ingresoLisp.size(); j++) {
 				if (ingresoLisp.get(j).contains("defun")) {
@@ -226,9 +224,10 @@ public class InterpreteLisp{
 			}
 
 			while (seguir) {
-				for (int i=0; i<ingresoLisp.size(); i++) {
+				for (int i=1; i<ingresoLisp.size(); i++) {
 					for (int j=0; j<vocLisp.size(); j++) {
-						if (ingresoLisp.get(i).contains(vocLisp.get(j))) {
+						int contador = 0;
+						if (ingresoLisp.get(ingresoLisp.size()-i).contains(vocLisp.get(j))) {
 							switch(j){
 								case 0: //Atom
 									mostrar.add(predicados.funAtom(ingresoLisp));
