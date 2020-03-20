@@ -234,7 +234,7 @@ public class Definir{
 		String functionName;
 
 		// Consiguiendo el nombre y las funciones
-		variablesF = setNombreFuncion(nuevaFuncion.get(nuevaFuncion.size() - 1));
+		variablesF = setNombreFuncion(nuevaFuncion);
 		functionName = variablesF.get(0);
 		
 		// Eliminando el nombre y cambiandolo a mayuscular
@@ -269,7 +269,9 @@ public class Definir{
 	 * @return el nombre de la funcion y todas las variables
 	 * *Utilizado en setFuncion
 	 */
-	private ArrayList<String> setNombreFuncion(ArrayList<String> nombre) {
+	private ArrayList<String> setNombreFuncion(ArrayList<ArrayList<String>> nombre) {
+		ArrayList<String> nombre2 = nombre.get(nombre.size() - 1);
+
 		ArrayList<String> temporal = new ArrayList<String>();
 		Integer index = 0;
 		String nombreAux = "", nombreAux2 = "";
@@ -277,29 +279,35 @@ public class Definir{
 		Boolean flag = false;
 
 		// Encontrando el nombre con base al defun
-		for(int i = 0; i < nombre.size(); i++){
-			nombreAux = nombre.get(i).replace(" ", "");
+		for(int i = 0; i < nombre2.size(); i++){
+			nombreAux = nombre2.get(i).replace(" ", "");
 			if(nombreAux.equalsIgnoreCase("defun")){
 				index = i;
 			}
 		}
 
 		// Asignandole el nombre
-		String nombreS = nombre.get(index + 1);
-		// Separando los elementos
-		nombreAux = "";
-		for(int i = 0; i < nombreS.length(); i++){
-			if((nombreS.charAt(i) == '(')){
-				flag = true;
-			}else if((nombreS.charAt(i) == ')')){
-				break;
-			}else if(flag){
-				nombreAux += Character.toString(nombreS.charAt(i));
-			}else{
-				nombreAux2 += Character.toString(nombreS.charAt(i));
-			}
+		nombreAux2 = nombre2.get(index + 1);
 
-		}		
+		nombreAux = "";
+		for (int i=0; i<nombre.size(); i++) {
+			for (int j=0; j<nombre.get(i).size(); j++) {
+				if (nombre.get(i).get(j).contains("(") && nombre.get(i).get(j).contains(")")) {
+
+					nombreAux = nombre.get(i).get(j);
+				}				
+			}
+		}	
+
+		if (nombreAux.equals("")) {
+			nombre2 = nombre.get(nombre.size() - 2); //Se obtiene el array anterior
+			for (String a: nombre2) {
+				nombreAux += a;
+			}
+		}
+		
+		nombreAux = nombreAux.replaceAll("\\)", "");
+		nombreAux = nombreAux.replaceAll("\\(", "");
 
 		// Agregando a las listas
 		aux[0] = nombreAux2;
