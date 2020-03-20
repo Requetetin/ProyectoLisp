@@ -130,10 +130,13 @@ public class InterpreteLisp{
 			}
 
 			if (contador1 > 1) {
-				str = str.replace("("," ( ");
-			} else if (contador2 > 1) {
-				str = str.replace(")"," ) ");
+				str = str.replaceAll("\\)"," ) ");
+
+			} 
+			if (contador2 > 1) {
+				str = str.replaceAll("\\("," ( ");
 			}
+
 
 			temporal2 += " " + str;
 		}
