@@ -10,12 +10,14 @@
 import java.util.*;
 
 public class InterpreteLisp{
-	ArrayList<String> listado = new ArrayList<String>();
-	ArrayList<String> vocLisp = new ArrayList<String>();
+	private ArrayList<String> listado = new ArrayList<String>();
+	private ArrayList<String> vocLisp = new ArrayList<String>();
 	static ArrayList<ArrayList<String>> ingresoLisp = new ArrayList<ArrayList<String>>();
-	boolean methodPrintIsFound = false;
+	
+	private boolean methodPrintIsFound = false;
 	static int actual = 0;
 
+	/*Se instancian las clases lisp*/
 	Leer print = new Leer();
 	Predicados predicados = new Predicados();
 	Definir definir = new Definir();
@@ -105,22 +107,24 @@ public class InterpreteLisp{
 			
 		}
 	}
-	/*
 	/**
-	Post:
+	Pre: Se obtiene lo ingresado por el usuario
+	@param input 			Se obtiene lo ingresado separado por un espacio
+	@return Se retorna lo ingresado de forma correcta 
 	*/
 	private String addSpace(String[] input){
 		String[] temporal;
 		String str = "";
 		String temporal2 = "";
 
+		/*Se separan los parentesis que vayan unidos para separar bien el programa*/
 		for (int j=0; j<input.length; j++) {
 			int contador1 = 0;
 			int contador2 = 0;
 
 			str = input[j];
 			temporal = str.split("");
-
+			//Se cuenta cuantos parentesis hay por string temporal
 			for (int i=0; i<temporal.length; i++) {
 				if (temporal[i].equals(")")) {
 					contador1++;
@@ -128,25 +132,21 @@ public class InterpreteLisp{
 					contador2++;
 				}
 			}
-
+			//Si hay mas de dos, se agrega un espacio
 			if (contador1 > 1) {
 				str = str.replaceAll("\\)"," ) ");
-
-			} 
-			if (contador2 > 1) {
+			} if (contador2 > 1) {
 				str = str.replaceAll("\\("," ( ");
 			}
-
-
+			//Se agrega al nuevo string
 			temporal2 += " " + str;
 		}
-
+		//Se separa el nuevo string por cada espacio
 		input = temporal2.split(" ");
 		temporal2 = "";
-
+		//Se agregan los espacios necesarios
 		for (int i=0; i<input.length; i++) {
 			str = input[i];
-
 			if (str.contains("(") && str.contains(")")) {
 				int temp = str.indexOf(")");
 				temporal2 += " " +str.substring(0, temp);
@@ -166,15 +166,20 @@ public class InterpreteLisp{
 
 		StringTokenizer st = new StringTokenizer(temporal2, " ");
 		StringBuffer sb = new StringBuffer();
-		 
+		//Se quitan espacios extras
 		while(st.hasMoreElements()){
 		    sb.append(st.nextElement()).append(" ");
 		}
-		 
+		//Se regresa bien escrito lo ingresado
 		temporal2 = sb.toString();
 		return temporal2;
 	}
 
+
+	/**
+	Pre: 
+	Post: Se genera el vocabulario de lisp
+	*/
 	private void generarVoc(){
 		vocLisp.add("atom");
 		vocLisp.add("list");
@@ -185,8 +190,10 @@ public class InterpreteLisp{
 		vocLisp.add("/");
 		vocLisp.add("*");
 	}
+
 	/**
 	Pre: Hay algo ingresado por el usuario
+	@param input 		Lo recibido por el usuario
 	@return la funcion realizada por el usuario
 	*/
 	public ArrayList<String> buscarFuncionLisp(String input){
@@ -211,6 +218,11 @@ public class InterpreteLisp{
 					}	
 					seguir = false;				
 				}
+			}
+
+			if (definir.hasKey(ingresoLisp)) {
+				mostrar.add(definir.runFuncion(ingresoLisp));
+				seguir = false;
 			}
 
 			while (seguir) {
