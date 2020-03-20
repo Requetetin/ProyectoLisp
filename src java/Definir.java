@@ -11,7 +11,7 @@ import java.util.*;
 public class Definir{
 
 	// Se guardaran aquí las funciones y las variables
-	private Map<String, ArrayList<ArrayList<String>>> functions = new HashMap<>();
+	private Map<String, ArrayList<String>> functions = new HashMap<>();
 	private Map<String, ArrayList<String>> variables = new HashMap<>();
 	private Calcular calc = new Calcular();
 	private Predicados predicate = new Predicados();
@@ -24,7 +24,7 @@ public class Definir{
 	 */
 	public String runFuncion(ArrayList<ArrayList<String>> function){
 		// Espacios en donde se guardaran las funciones y las variables
-		ArrayList<ArrayList<String>> funtionality = new ArrayList<>();
+		ArrayList<String> funtionality = new ArrayList<>();
 		ArrayList<String> variables = new ArrayList<>();
 		ArrayList<String> replaceVariables = new ArrayList<>();
 		Boolean flag = false; // Verifica si hay un cond()
@@ -51,28 +51,31 @@ public class Definir{
 			
 			// Cambiando todas las variables por números mandados por el usuario
 			for(int i = 0; i < funtionality.size(); i++){ // Recorriendo el arraylist
-				for(int j = 0; j < funtionality.get(i).size(); j++){ // Recorriendo el arraylist que esta adentro de otra
+				
+				for(int j = 0; j < replaceVariables.size(); j++){ // Trata de remplazar si es una variable
+					funtionality.get(i).replace(variables.get(j), replaceVariables.get(j));
 
-					for(int k = 0; k < replaceVariables.size(); k++){ // Trata de remplazar si es una variable
-						funtionality.get(i).get(j).replace(variables.get(k), replaceVariables.get(k));
-
-						if(funtionality.get(i).get(j).equalsIgnoreCase(" cond")){ // Verificando si tiene un cond
-							flag = true;
-						}
-
+					if(funtionality.get(i).equalsIgnoreCase(" cond")){ // Verificando si tiene un cond
+						flag = true;
 					}
 
 				}
+				
 			}
 
 			System.out.println("---- K " + funtionality);
 
-			// Empieza la ejecución del programa WUUUUU ESO PERROS 
+			// Empieza la ejecución del programa verificando en donde empieza
+			if(flag){
 
 
 
 
+			}else{
 
+
+
+			}
 
 
 			return resultado;
@@ -87,7 +90,7 @@ public class Definir{
 	* Da a conocer al exterior si posee la llave o no 
 	* @pos da una vista al mundo si esta la funcion
 	* @param function es el nombre de la funcion que quiere ser validada
-	* @return si la contiene o no
+	* @return si la contiene o <noframes></noframes>
 	*/
 	public Boolean hasKey(ArrayList<ArrayList<String>> function){
 		return functions.containsKey(function.get(0).get(1).toUpperCase()); 
@@ -103,7 +106,7 @@ public class Definir{
 	*/
 	public String setFuncion(ArrayList<ArrayList<String>> nuevaFuncion){
 		ArrayList<String> variablesF = new ArrayList<>();
-		ArrayList<ArrayList<String>> funtion = new ArrayList<>();
+		ArrayList<String> funtion = new ArrayList<>();
 		String funtionName;
 
 		// Consiguiendo el nombre y las funciones
@@ -119,7 +122,6 @@ public class Definir{
 		// Agregando las funciones 
 		this.functions.put(funtionName, funtion);
 		this.variables.put(funtionName, variablesF);
-
 
 		/**
 		Borrar despues
@@ -197,7 +199,7 @@ public class Definir{
 	 * @return un arraylist de string de un arraylist con el funcionamiento
 	 * *Utilizado en setFuncion
 	 */
-	private ArrayList<ArrayList<String>> setFuncionalidadFuncion(ArrayList<ArrayList<String>> funtionality){
+	private ArrayList<String> setFuncionalidadFuncion(ArrayList<ArrayList<String>> funtionality){
 		ArrayList<ArrayList<String>> temp = new ArrayList<>();
 		ArrayList<String> aux = new ArrayList<>();
 
@@ -216,7 +218,9 @@ public class Definir{
 			temp.remove(0);
 		}
 		
-		return temp;
+		aux = temp.get(0);
+
+		return aux;
 	}
 
 }
