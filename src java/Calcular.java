@@ -8,10 +8,11 @@
 */
 import java.util.*;
 public class Calcular{
-
+    /**
+     * @param operacion Recibe los operandos y la operadores
+     * @return devuelve la operacion realizada por el operando
+     */
     public String operar(ArrayList<ArrayList<String>> operacion){
-
-
         for (int i=0; i<operacion.size(); i++) {
             if (operacion.get(i).contains("+")) {
                 try {

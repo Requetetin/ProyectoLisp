@@ -139,7 +139,7 @@ public class InterpreteLisp{
 					contador2++;
 				}
 			}
-			
+
 			//Si hay mas de dos, se agrega un espacio
 			if (contador1 > 1) {
 				str = str.replaceAll("\\)"," ) ");
@@ -170,7 +170,6 @@ public class InterpreteLisp{
 		}
 		//Se regresa bien escrito lo ingresado
 		temporal2 = sb.toString();
-		System.out.println(temporal2);
 		return temporal2;
 	}
 
@@ -206,7 +205,7 @@ public class InterpreteLisp{
 		System.out.println(ingresoLisp);
 
 		if(print.methodPrintFound(input)){ //Print recibe el input inicial
-			mostrar.add(print.values(input));  
+			mostrar.add(print.values());  
 		} else {
 			for (int j=0; j<ingresoLisp.size(); j++) {
 				if (ingresoLisp.get(j).contains("defun")) {

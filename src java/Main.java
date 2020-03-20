@@ -1,3 +1,12 @@
+/**
+* @author Andrea Amaya 19357
+* @author Martin Amado 19020
+* @author Brandon Hernández 19376
+*
+*
+* Encargada de recibir lo ingresado por el usuario
+*/
+
 import java.util.*;
 
 public class Main{
@@ -26,4 +35,6 @@ public class Main{
 			
 		}
 	}
+
+
 }
