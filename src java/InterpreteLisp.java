@@ -130,10 +130,13 @@ public class InterpreteLisp{
 			}
 
 			if (contador1 > 1) {
-				str = str.replace("("," ( ");
-			} else if (contador2 > 1) {
-				str = str.replace(")"," ) ");
+				str = str.replaceAll("\\)"," ) ");
+
+			} 
+			if (contador2 > 1) {
+				str = str.replaceAll("\\("," ( ");
 			}
+
 
 			temporal2 += " " + str;
 		}
@@ -204,7 +207,7 @@ public class InterpreteLisp{
 					try{
 						mostrar.add(definir.setFuncion(ingresoLisp)); //Se revisa que no exista la llave, sino se genera la funcion sin error
 					} catch (Exception e) {
-						mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
+						mostrar.add("La funcion ya esta definida");
 					}	
 					seguir = false;				
 				}
@@ -219,7 +222,7 @@ public class InterpreteLisp{
 									mostrar.add(predicados.funAtom(ingresoLisp));
 									break;
 								case 1: //List
-									//mostrar.add(predicados.funList(ingresoLisp));
+									mostrar = predicados.funList(ingresoLisp);
 									break;
 								case 2: //Equals
 									mostrar.add(predicados.funEquals(ingresoLisp));
@@ -244,6 +247,11 @@ public class InterpreteLisp{
 									mostrar.add(calcular.operar(ingresoLisp));
 									break;
 								default:
+									try{
+										mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
+									} catch (Exception e) {
+										mostrar.add("Metodo no encontrado");
+									}	
 									break;
 							}
 							seguir = false;
