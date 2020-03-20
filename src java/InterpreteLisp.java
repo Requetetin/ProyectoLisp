@@ -224,9 +224,8 @@ public class InterpreteLisp{
 			}
 
 			while (seguir) {
-				for (int i=1; i<ingresoLisp.size(); i++) {
-					for (int j=0; j<vocLisp.size(); j++) {
-						int contador = 0;
+				for (int i=1; i<=ingresoLisp.size(); i++) {
+					for (int j=0; j<vocLisp.size(); j++)  {
 						if (ingresoLisp.get(ingresoLisp.size()-i).contains(vocLisp.get(j))) {
 							switch(j){
 								case 0: //Atom

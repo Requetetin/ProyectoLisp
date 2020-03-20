@@ -254,7 +254,7 @@ public class Definir{
 		Borrar despues
 		*/
 		System.out.println("\nInfo Metodo:");
-		System.out.println("FUNCIONES" + this.functions.get(functionName));
+		System.out.println("OPERACIONES" + this.functions.get(functionName));
 		System.out.println("VARIABLES FUN" + this.variables.get(functionName));
 		System.out.println("??"+this.oldFunction.get(functionName));
 
