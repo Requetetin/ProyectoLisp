@@ -247,17 +247,13 @@ public class InterpreteLisp{
 									mostrar.add(calcular.operar(ingresoLisp));
 									break;
 								default:
-									try{
-										mostrar.add(definir.runFuncion(ingresoLisp)); //Se corre la funcion o se muestra error
-									} catch (Exception e) {
-										mostrar.add("Metodo no encontrado");
-									}	
 									break;
 							}
 							seguir = false;
 						}	
 					}			
 				}
+				seguir = false;
 			}
 		}
 		if (mostrar.size() == 0) {
