@@ -143,13 +143,13 @@ public class InterpreteLisp{
 			//Si hay mas de dos, se agrega un espacio
 			if (contador1 > 1) {
 				str = str.replaceAll("\\)"," ) ");
-			} else if (contador1==1 && contador2==0) {
+			} else {
 				str = str.replaceAll("\\)"," ) ");
 			} 
 
 			if (contador2 > 1) {
 				str = str.replaceAll("\\("," ( ");
-			} else if (contador2==1 && contador1==0) {
+			} else {
 				str = str.replaceAll("\\("," ( ");
 			}
 

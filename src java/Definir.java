@@ -83,8 +83,55 @@ public class Definir{
 			// Empieza la ejecución del programa verificando en donde empieza
 			if(logic){
 				funtionality = predicateCommunication(functionName, replaceVariables);
+				String result = "";
+				int total = 0;
 
-				return "AUN NO PAPA";
+				for(int i=funtionality.size()-1;i>-1;i--){
+					try{
+						ArrayList<ArrayList<String>> toOperate = new ArrayList<ArrayList<String>>();
+						ArrayList<String> operation = new ArrayList<String>();
+
+
+						String a = funtionality.get(i);
+						String b = funtionality.get(i-1);
+						String op = funtionality.get(i-2);
+
+
+						System.out.println("ESTO ES A " + a);
+						System.out.println("ESTO ES b " + b);
+						System.out.println("ESTO ES op " + op);
+
+						operation.add(op);
+						operation.add(b);
+						operation.add(a);
+						toOperate.add(operation);
+						result = calc.operar(toOperate);
+						total += Integer.parseInt(result);
+						System.out.println("SE HACE CALCULAR");
+						i = i-3;
+
+						funtionality.remove(i);
+						funtionality.remove(i-1);
+						funtionality.remove(i-2);
+					}catch(Exception e){
+						System.out.println("NOMBRE FUN BUSCADA " + funtionality.get(i));
+						if(functions.containsKey(funtionality.get(i))){
+							ArrayList<ArrayList<String>> recurs = new ArrayList<ArrayList<String>>();
+							ArrayList<String> prerecurs = new ArrayList<String>();
+							prerecurs.add("(");
+							prerecurs.add(funtionality.get(i));
+							prerecurs.add(result);
+							prerecurs.add(")");
+							recurs.add(prerecurs);
+							runFuncion(recurs);
+
+							System.out.println("SE HACE FIBONACCI");
+
+						}
+					}
+				}
+				
+				return Integer.toString(total);
 			}else{
 
 				// Realizando sin recursividad 
@@ -271,6 +318,7 @@ public class Definir{
 	 * *Utilizado en setFuncion
 	 */
 	private ArrayList<String> setNombreFuncion(ArrayList<ArrayList<String>> nombre) {
+		this.nuevaFuncion = nombre;
 		ArrayList<String> nombre2 = nombre.get(nombre.size() - 1);
 
 		ArrayList<String> temporal = new ArrayList<String>();
@@ -305,6 +353,7 @@ public class Definir{
 			for (String a: nombre2) {
 				nombreAux += a;
 			}
+			this.nuevaFuncion.remove(nombre.size() - 2);
 		}
 		
 		nombreAux = nombreAux.replaceAll("\\)", "");
@@ -337,6 +386,7 @@ public class Definir{
 	 * *Utilizado en setFuncion
 	 */
 	private ArrayList<String> setFuncionalidadFuncion(ArrayList<ArrayList<String>> funtionality){
+		funtionality = this.nuevaFuncion;
 		ArrayList<ArrayList<String>> temp = new ArrayList<>();
 		ArrayList<String> aux = new ArrayList<>();
 

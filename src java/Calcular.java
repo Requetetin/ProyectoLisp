@@ -13,6 +13,7 @@ public class Calcular{
      * @return devuelve la operacion realizada por el operando
      */
     public String operar(ArrayList<ArrayList<String>> operacion){
+        System.out.println("RECIBO EN CALCU " + operacion);
         for (int i=0; i<operacion.size(); i++) {
             if (operacion.get(i).contains("+")) {
                 try {
