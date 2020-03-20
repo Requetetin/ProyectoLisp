@@ -26,9 +26,6 @@ public class Calcular{
             } else if (operacion.get(i).contains("-")) {
                 try {
                 	int posicion = operacion.get(i).indexOf("-");
-
-		        	System.out.println("LLEGA A CALCULAR " + operacion.get(i).get(i+1));
-		        	System.out.println("LLEGA A CALCULAR " + operacion.get(i).get(i+2));
                     
                     float valor1 = (float)Float.parseFloat(operacion.get(i).get(posicion+1));
                     float valor2 = (float)Float.parseFloat(operacion.get(i).get(posicion+2));
