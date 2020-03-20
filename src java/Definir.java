@@ -15,6 +15,7 @@ public class Definir{
 	private Map<String, ArrayList<String>> variables = new HashMap<>();
 	private Map<String, ArrayList<ArrayList<String>>> oldFunction = new HashMap<>();
 	private ArrayDeque<String> container = new ArrayDeque<>();
+	private ArrayList<ArrayList<String>> nuevaFuncion = new  ArrayList<ArrayList<String>>();
 	
 	/**
 	 * Se encarga de correr una función o indicar que no se encuentra
