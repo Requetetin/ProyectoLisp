@@ -159,10 +159,20 @@ public class Predicados{
 									}
 									return s;	
 								}else{
-								for(int j=1;j<listado.get(i-6).size()-1;j++){
-									s+= listado.get(i-6).get(j);
+									if(listado.get(i-5).size()>3){
+										for(int j=2;j<listado.get(i-5).size()-1;j++){
+												s+= listado.get(i-5).get(j)+" ";
+											}
+											return s;
+										}
+									else{
+										for(int j=i-6;j>-1;j--){
+											for(int k=1; k<listado.get(j).size()-1;k++){
+												s+= listado.get(j).get(k)+" ";
+											}
+										}
+										return s;
 									}
-									return s;
 								}
 							 
 							case "<":
@@ -172,10 +182,20 @@ public class Predicados{
 									}	
 									return s;
 								}else{
-								for(int j=1;j<listado.get(i-6).size()-1;j++){
-									s+= listado.get(i-6).get(j);
+								if(listado.get(i-5).size()>3){
+										for(int j=2;j<listado.get(i-5).size()-1;j++){
+												s+= listado.get(i-5).get(j)+" ";
+											}
+											return s;
+										}
+									else{
+										for(int j=i-6;j>-1;j--){
+											for(int k=1; k<listado.get(j).size()-1;k++){
+												s+= listado.get(j).get(k)+" ";
+											}
+										}
+										return s;
 									}
-									return s;
 								}
 							 
 
@@ -186,10 +206,20 @@ public class Predicados{
 									}	
 									return s;
 								}else{
-								for(int j=1;j<listado.get(i-6).size()-1;j++){
-									s+= listado.get(i-6).get(j);
+								if(listado.get(i-5).size()>3){
+										for(int j=2;j<listado.get(i-5).size()-1;j++){
+												s+= listado.get(i-5).get(j)+" ";
+											}
+											return s;
+										}
+									else{
+										for(int j=i-6;j>-1;j--){
+											for(int k=1; k<listado.get(j).size()-1;k++){
+												s+= listado.get(j).get(k)+" ";
+											}
+										}
+										return s;
 									}
-									return s;
 								}
 							 
 						}
@@ -216,10 +246,20 @@ public class Predicados{
 									}	
 									return s;
 								}else{
-								for(int j=1;j<listado.get(i-6).size()-1;j++){
-									s+= listado.get(i-6).get(j);
+								if(listado.get(i-5).size()>3){
+										for(int j=2;j<listado.get(i-5).size()-1;j++){
+												s+= listado.get(i-5).get(j)+" ";
+											}
+											return s;
+										}
+									else{
+										for(int j=i-6;j>-1;j--){
+											for(int k=1; k<listado.get(j).size()-1;k++){
+												s+= listado.get(j).get(k)+" ";
+											}
+										}
+										return s;
 									}
-									return s;
 								}
 							case "<":
 								if(a < b){
@@ -228,10 +268,20 @@ public class Predicados{
 									}	
 									return s;
 								}else{
-								for(int j=1;j<listado.get(i-6).size()-1;j++){
-									s+= listado.get(i-6).get(j);
+								if(listado.get(i-5).size()>3){
+										for(int j=2;j<listado.get(i-5).size()-1;j++){
+												s+= listado.get(i-5).get(j)+" ";
+											}
+											return s;
+										}
+									else{
+										for(int j=i-6;j>-1;j--){
+											for(int k=1; k<listado.get(j).size()-1;k++){
+												s+= listado.get(j).get(k)+" ";
+											}
+										}
+										return s;
 									}
-									return s;
 								}
 							 
 
@@ -242,10 +292,20 @@ public class Predicados{
 									}
 									return s;	
 								}else{
-								for(int j=1;j<listado.get(i-6).size()-1;j++){
-									s+= listado.get(i-6).get(j);
+								if(listado.get(i-5).size()>3){
+										for(int j=2;j<listado.get(i-5).size()-1;j++){
+												s+= listado.get(i-5).get(j)+" ";
+											}
+											return s;
+										}
+									else{
+										for(int j=i-6;j>-1;j--){
+											for(int k=1; k<listado.get(j).size()-1;k++){
+												s+= listado.get(j).get(k)+" ";
+											}
+										}
+										return s;
 									}
-									return s;
 								}
 							 
 						}
@@ -270,11 +330,22 @@ public class Predicados{
 									}	
 									return s;
 								}else{
-								for(int j=1;j<listado.get(i-6).size()-1;j++){
-									s+= listado.get(i-6).get(j);
+								if(listado.get(i-5).size()>3){
+										for(int j=2;j<listado.get(i-5).size()-1;j++){
+												s+= listado.get(i-5).get(j)+" ";
+											}
+											return s;
+										}
+									else{
+										for(int j=i-6;j>-1;j--){
+											for(int k=1; k<listado.get(j).size()-1;k++){
+												s+= listado.get(j).get(k)+" ";
+											}
+										}
+										return s;
 									}
-									return s;
 								}
+								
 							 
 							case "<":
 								if(a < b){
@@ -283,10 +354,20 @@ public class Predicados{
 									}	
 									return s;
 								}else{
-								for(int j=1;j<listado.get(i-6).size()-1;j++){
-									s+= listado.get(i-6).get(j);
+								if(listado.get(i-5).size()>3){
+										for(int j=2;j<listado.get(i-5).size()-1;j++){
+												s+= listado.get(i-5).get(j)+" ";
+											}
+											return s;
+										}
+									else{
+										for(int j=i-6;j>-1;j--){
+											for(int k=1; k<listado.get(j).size()-1;k++){
+												s+= listado.get(j).get(k)+" ";
+											}
+										}
+										return s;
 									}
-									return s;
 								}
 							 
 							case "=":
@@ -296,10 +377,20 @@ public class Predicados{
 									}	
 									return s;
 								}else{
-								for(int j=1;j<listado.get(i-6).size()-1;j++){
-									s+= listado.get(i-6).get(j);
+								if(listado.get(i-5).size()>3){
+										for(int j=2;j<listado.get(i-5).size()-1;j++){
+												s+= listado.get(i-5).get(j)+" ";
+											}
+											return s;
+										}
+									else{
+										for(int j=i-6;j>-1;j--){
+											for(int k=1; k<listado.get(j).size()-1;k++){
+												s+= listado.get(j).get(k)+" ";
+											}
+										}
+										return s;
 									}
-									return s;
 								}
 							 
 						}
