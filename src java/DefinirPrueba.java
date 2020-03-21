@@ -87,20 +87,22 @@ public class Definir{
 				int total = 0;
 				if(funtionality.size()==1){
 					total += Integer.parseInt(funtionality.get(0));
+					return Integer.toString(total);
 				}
 
 				
 				for(int i=funtionality.size()-1;i>-1;i--){
-
+					
 					try{
 						ArrayList<ArrayList<String>> toOperate = new ArrayList<ArrayList<String>>();
 						ArrayList<String> operation = new ArrayList<String>();
 
 						Integer.parseInt(funtionality.get(i)); 
+						Integer.parseInt(funtionality.get(i-1));
 						String a = funtionality.remove(i);
 						System.out.println(a);
 						i--;
-						Integer.parseInt(funtionality.get(i));
+						
 						String b = funtionality.remove(i);
 						System.out.println(b);
 						i--;
@@ -111,24 +113,44 @@ public class Definir{
 						operation.add(b);
 						operation.add(a);
 						toOperate.add(operation);
+
 						result = calc.operar(toOperate);
+
 						
 
 						System.out.println(result);
 						total += Integer.parseInt(result);
+						
+						
 												
 					}catch(Exception e){
-						funtionality.add(result);
+						
+						System.out.println("Entre al catch");
 						i = funtionality.size()-1;
+						
 						if(functions.containsKey(funtionality.get(i-1).toUpperCase())){
+							System.out.println("Entre al if");
 							ArrayList<ArrayList<String>> recurs = new ArrayList<ArrayList<String>>();
 							ArrayList<String> prerecurs = new ArrayList<String>();
+							
 							prerecurs.add("(");
-							prerecurs.add(funtionality.get(i-1));
-							prerecurs.add(funtionality.get(i));
+							System.out.println(funtionality.get(i));
+							prerecurs.add(funtionality.remove(i));
+							System.out.println(result);
+							float paso = Float.parseFloat(result);
+							int meto = (int) paso;
+							System.out.println(meto);
+							prerecurs.add(Integer.toString(meto));
 							prerecurs.add(")");
 							recurs.add(prerecurs);
-							runFuncion(recurs);
+							for(int h=0;h<prerecurs.size();h++){
+								System.out.println("Indice # "+h+":"+prerecurs.get(h));
+							}
+							System.out.println("Antes de recursividad");
+							if(runFuncion(recurs).equals("1")){
+								total ++;
+							}
+							
 
 						}
 					}
