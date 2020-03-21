@@ -52,10 +52,8 @@ public class Definir{
 		//---------------------------------------------------------
 
 		// Consiguiendo los elementos necesarios para poder realizar la funcion
-		for(int i = 0; i < functions.get(functionName).size(); i++){
-			funtionality.add(functions.get(functionName).get(i)); // Copiando lo que hay en el mapa
-		}
-		variablesM = variables.get(functionName);
+		funtionality = (ArrayList)functions.get(functionName).clone(); // Copiando lo que hay en el mapa
+		variablesM = (ArrayList)variables.get(functionName).clone();
 
 		// Consiguiendo las variables del arraylist de arraylist
 		for(int i = 0; i < function.get(0).size(); i++){
@@ -83,6 +81,15 @@ public class Definir{
 			// Empieza la ejecución del programa verificando en donde empieza
 			if(logic){
 				funtionality = predicateCommunication(functionName, replaceVariables);
+
+				// Verificando si posee recursividad el metodo
+				if(funtionality.contains(functionName) || funtionality.contains(functionName.toLowerCase())){
+					recursive = true;
+				}
+
+				// Haciendo la recursividad
+
+
 
 				return "AUN NO PAPA";
 			}else{
@@ -132,9 +139,7 @@ public class Definir{
 		String[] temp;
 		String response;
 
-		for(int i = 0; i < this.oldFunction.get(functionName).size(); i++){
-			communicate.add(this.oldFunction.get(functionName).get(i));
-		}
+		communicate = (ArrayList)this.oldFunction.get(functionName).clone();
 				
 		// Remplazando todas las variables por números
 		for(int i = 0; i < communicate.size(); i++){ // Por cada elemento del arraylist
@@ -218,7 +223,6 @@ public class Definir{
 	public Boolean hasKey(ArrayList<ArrayList<String>> function){
 		return functions.containsKey(function.get(0).get(1).toUpperCase()); 
 	}
-
 
 
 
