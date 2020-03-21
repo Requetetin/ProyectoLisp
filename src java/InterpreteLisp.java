@@ -115,47 +115,16 @@ public class InterpreteLisp{
 	private String addSpace(String[] input){
 		String[] temporal;
 
-
-
 		String str = "";
 		String temporal2 = "";
 
 		/*Se separan los parentesis que vayan unidos para separar bien el programa*/
 		for (int j=0; j<input.length; j++) {
-			int contador1 = 0;
-			int contador2 = 0;
-
-
 			str = input[j];
 			temporal = str.split("");
-			str += " ";
-
-
-			//Se cuenta cuantos parentesis hay por string temporal
-			for (int i=0; i<temporal.length; i++) {
-				if (temporal[i].equals(")")) {
-					contador1++;
-				} else if (temporal[i].equals("(")) {
-					contador2++;
-				}
-			}
-
-			//Si hay mas de dos, se agrega un espacio
-			if (contador1 > 1) {
-				str = str.replaceAll("\\)"," ) ");
-			} else {
-				str = str.replaceAll("\\)"," ) ");
-			} 
-
-			if (contador2 > 1) {
-				str = str.replaceAll("\\("," ( ");
-			} else {
-				str = str.replaceAll("\\("," ( ");
-			}
-
-			if (str.equals(")(")) {
-				str = " ) ( ";
-			}
+			
+			str = str.replaceAll("\\)"," ) ");
+			str = str.replaceAll("\\("," ( ");
 
 			//Se agrega al nuevo string
 			temporal2 += " " + str;
@@ -181,7 +150,7 @@ public class InterpreteLisp{
 	private void generarVoc(){
 		vocLisp.add("atom");
 		vocLisp.add("list");
-		vocLisp.add("equals");
+		vocLisp.add("equal");
 		vocLisp.add("cond");
 		vocLisp.add("+");
 		vocLisp.add("-");
@@ -201,8 +170,6 @@ public class InterpreteLisp{
 		
 		convertirArray(input); //Se genera el array para los metodos que lo necesiten
 		generarVoc(); //Se genera el vocabulario lisp
-
-		System.out.println(ingresoLisp);
 
 		if(print.methodPrintFound(input)){ //Print recibe el input inicial
 			mostrar.add(print.values());  

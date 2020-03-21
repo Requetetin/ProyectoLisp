@@ -73,8 +73,8 @@ public class Predicados{
 	public String funEquals(ArrayList<ArrayList<String>> listado){
 		for(int i=0; i<listado.size();i++){
 
-			if(listado.get(i).contains("equals")){
-				int p = listado.get(i).indexOf("equals");
+			if(listado.get(i).contains("equal")){
+				int p = listado.get(i).indexOf("equal");
 				//Revisa para comparar dos parametros que son otras listas (No dos strings)
 				if(listado.get(i).size()<5){
 					if(listado.get(i-1).equals(listado.get(i-2))){
