@@ -30,12 +30,19 @@ public class Definir{
 		ArrayList<String> variablesM = new ArrayList<>(); // Las que se agarran del mapa
 		ArrayList<String> replaceVariables = new ArrayList<>(); // Las que manda el usuario
 
+		// Variables recursivas
+		ArrayList<String> recursiveContainer = new ArrayList<>(); // Info recursiva 
+		ArrayList<String> recursiveGanas = new ArrayList<>(); // Funcion 
+		ArrayList<ArrayList<String>> recursiveMagic = new ArrayList<>();
+
 		// Para realizar las operaciones matematicas
 		ArrayList<String> operadoresAritmeticos = new ArrayList<>();
 
 		// Banderas
-		Boolean logic = false, aritmetico = false, recursive = false; // Verifica si hay un cond()
+		Boolean logic = false, aritmetico = false; // Verifica si hay un cond()
 		String resultado = "HOLA BB <3 :3";
+
+		System.out.println(function);
 
 		// Agregando los operadores matematicos
 		operadoresAritmeticos.add("+");
@@ -80,66 +87,51 @@ public class Definir{
 
 			// Empieza la ejecución del programa verificando en donde empieza
 			if(logic){
-				funtionality = predicateCommunication(functionName, replaceVariables);
-				String result = "";
-				int total = 0;
-
-				for(int i=funtionality.size()-1;i>-1;i--){
-					try{
-						ArrayList<ArrayList<String>> toOperate = new ArrayList<ArrayList<String>>();
-						ArrayList<String> operation = new ArrayList<String>();
-
-
-						String a = funtionality.remove(i);
-						String b = funtionality.remove(i-1);
-						String op = funtionality.remove(i-2);
-
-
-						System.out.println("ESTO ES A " + a);
-						System.out.println("ESTO ES b " + b);
-						System.out.println("ESTO ES op " + op);
-
-						operation.add(op);
-						operation.add(b);
-						operation.add(a);
-						toOperate.add(operation);
-						System.out.println("SE HACE CALCULAR " + calc.operar(toOperate));
-						result = calc.operar(toOperate);
-						System.out.println("SE HACE CALCULAR " + Integer.parseInt(result));
-						total += Integer.parseInt(result);
-						
-						i = i-3;
-					}catch(Exception e){
-						System.out.println("NOMBRE FUN BUSCADA " + funtionality.get(i));
-						if(functions.containsKey(funtionality.get(i))){
-							ArrayList<ArrayList<String>> recurs = new ArrayList<ArrayList<String>>();
-							ArrayList<String> prerecurs = new ArrayList<String>();
-							prerecurs.add("(");
-							prerecurs.add(funtionality.get(i));
-							prerecurs.add(result);
-							prerecurs.add(")");
-							recurs.add(prerecurs);
-							runFuncion(recurs);
-
-							System.out.println("SE HACE FIBONACCI");
-
+				funtionality = predicateCommunication(functionName, replaceVariables);				
 
 				// Verificando si posee recursividad el metodo
 				if(funtionality.contains(functionName) || funtionality.contains(functionName.toLowerCase())){
-					recursive = true;
-				}
+					
+					// Haciendo la magia de la recursividad 
+					for(int i = 0; i < funtionality.size(); i++){
+						// Si es igual al nombre de la funcion se vuelve a llamar
+						if(funtionality.get(i).equalsIgnoreCase(functionName)){
+							funtionality.remove(i); // Eliminando el nombre
+							for(int j = 0; j < 3; j++){
+								container.add(funtionality.remove(i));
+							}
 
-				// Haciendo la recursividad
-
-
-
-				return "AUN NO PAPA";
-
+							recursiveContainer.add(calc.operar(convertArrayList(3)));
+							i--;
 						}
+
 					}
-				}
-				
-				return Integer.toString(total);
+
+					// La magia de la recursividad
+					for(int i = 0; i < recursiveContainer.size(); i++){
+						recursiveGanas.add("(");
+						recursiveGanas.add(functionName);
+						recursiveGanas.add(recursiveContainer.remove(0)); 
+						recursiveGanas.add(" )");
+
+						recursiveMagic.add(recursiveGanas); // Agregando para que pueda operar
+						recursiveContainer.add(runFuncion(recursiveMagic));
+						recursiveGanas.clear();	
+						recursiveMagic.clear();
+					}
+
+					// Agregando los ultimos valores
+					recursiveContainer.add(0, funtionality.get(0));
+					recursiveMagic.add(recursiveContainer);
+
+					// Haciendo la ultima operaciones
+					resultado = calc.operar(recursiveMagic);
+
+				}else if(funtionality.size() == 1){
+					return funtionality.get(0);
+				}		
+
+				return resultado;
 
 			}else{
 
@@ -185,11 +177,18 @@ public class Definir{
 		Predicados predicate = new Predicados();
 		ArrayList<ArrayList<String>> communicate = new ArrayList<>();
 		ArrayList<String> aux = new ArrayList<>();
+		ArrayList<Integer> position = new ArrayList<>();
 		String[] temp;
+
 		String response;
 
+		// Separando el string
 		communicate = (ArrayList)this.oldFunction.get(functionName).clone();
-				
+
+		System.out.println(communicate);
+
+		System.out.print(communicate.get(0).indexOf(variables.get(functionName).get(0)));
+
 		// Remplazando todas las variables por números
 		for(int i = 0; i < communicate.size(); i++){ // Por cada elemento del arraylist
 			for(int j = 0; j < communicate.get(i).size(); j++){ // Por cada string en el arraylist
@@ -198,6 +197,9 @@ public class Definir{
 
 					if(communicate.get(i).get(j).equalsIgnoreCase(variables.get(functionName).get(k))){
 						communicate.get(i).set(j, replaceVariables.get(k)); // Remplazando las variables por números
+						position.add(i);
+						position.add(j);
+						position.add(k);
 					}
 
 				}
@@ -205,9 +207,8 @@ public class Definir{
 			}
 		}
 
-		System.out.println("Predicado\n" + communicate);
 		// Consiguiendo el string que tendra que convertirse en arraylist para ser operado
-		response = predicate.funCond(this.oldFunction.get(functionName));
+		response = predicate.funCond(communicate);
 
 		temp = response.split(" ");
 
@@ -215,8 +216,14 @@ public class Definir{
 			aux.add(temp[i]);
 		}
 
-		System.out.println(aux);
 
+		// Regresando a communicate a su estado anterior
+		while(position.size() > 0){
+			communicate.get(position.remove(0)).set(position.remove(0), variables.get(functionName).get(position.remove(0)));
+		}
+
+		System.out.println("REPLACE " + aux);
+		System.out.println(communicate);
 		return aux;
 	}
 
@@ -285,7 +292,7 @@ public class Definir{
 	public String setFuncion(ArrayList<ArrayList<String>> nuevaFuncion){
 		ArrayList<String> variablesF = new ArrayList<>();
 		ArrayList<String> funtion = new ArrayList<>();
-		String functionName;
+		String functionName, funtionality;
 
 		// Consiguiendo el nombre y las funciones
 		variablesF = setNombreFuncion(nuevaFuncion);
@@ -303,14 +310,6 @@ public class Definir{
 		this.functions.put(functionName, funtion);
 		this.variables.put(functionName, variablesF);
 		this.oldFunction.put(functionName, nuevaFuncion);
-
-		/**
-		Borrar despues
-		*/
-		System.out.println("\nInfo Metodo:");
-		System.out.println("OPERACIONES" + this.functions.get(functionName));
-		System.out.println("VARIABLES FUN" + this.variables.get(functionName));
-		System.out.println("??"+this.oldFunction.get(functionName));
 
 		return functionName;
 	}
