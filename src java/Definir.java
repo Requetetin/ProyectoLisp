@@ -52,8 +52,10 @@ public class Definir{
 		//---------------------------------------------------------
 
 		// Consiguiendo los elementos necesarios para poder realizar la funcion
-		funtionality = (ArrayList)functions.get(functionName).clone(); // Copiando lo que hay en el mapa
-		variablesM = (ArrayList)variables.get(functionName).clone();
+		for(int i = 0; i < functions.get(functionName).size(); i++){
+			funtionality.add(functions.get(functionName).get(i)); // Copiando lo que hay en el mapa
+		}
+		variablesM = variables.get(functionName);
 
 		// Consiguiendo las variables del arraylist de arraylist
 		for(int i = 0; i < function.get(0).size(); i++){
@@ -83,35 +85,42 @@ public class Definir{
 				funtionality = predicateCommunication(functionName, replaceVariables);
 				String result = "";
 				int total = 0;
+				if(funtionality.size()==1){
+					total += Integer.parseInt(funtionality.get(0));
+				}
 
+				
 				for(int i=funtionality.size()-1;i>-1;i--){
+
 					try{
 						ArrayList<ArrayList<String>> toOperate = new ArrayList<ArrayList<String>>();
 						ArrayList<String> operation = new ArrayList<String>();
 
-
+						Integer.parseInt(funtionality.get(i)); 
 						String a = funtionality.remove(i);
-						String b = funtionality.remove(i-1);
-						String op = funtionality.remove(i-2);
-
-
-						System.out.println("ESTO ES A " + a);
-						System.out.println("ESTO ES b " + b);
-						System.out.println("ESTO ES op " + op);
-
+						System.out.println(a);
+						i--;
+						Integer.parseInt(funtionality.get(i));
+						String b = funtionality.remove(i);
+						System.out.println(b);
+						i--;
+						String op = funtionality.remove(i);
+						System.out.println(op);
+						i--;
 						operation.add(op);
 						operation.add(b);
 						operation.add(a);
 						toOperate.add(operation);
-						System.out.println("SE HACE CALCULAR " + calc.operar(toOperate));
 						result = calc.operar(toOperate);
-						System.out.println("SE HACE CALCULAR " + Integer.parseInt(result));
-						total += Integer.parseInt(result);
 						
-						i = i-3;
+
+						System.out.println(result);
+						total += Integer.parseInt(result);
+												
 					}catch(Exception e){
-						System.out.println("NOMBRE FUN BUSCADA " + funtionality.get(i));
-						if(functions.containsKey(funtionality.get(i))){
+						funtionality.add(result);
+						i = funtionality.size()-1;
+						if(functions.containsKey(funtionality.get(i-1))){
 							ArrayList<ArrayList<String>> recurs = new ArrayList<ArrayList<String>>();
 							ArrayList<String> prerecurs = new ArrayList<String>();
 							prerecurs.add("(");
@@ -121,26 +130,13 @@ public class Definir{
 							recurs.add(prerecurs);
 							runFuncion(recurs);
 
-							System.out.println("SE HACE FIBONACCI");
-
-
-				// Verificando si posee recursividad el metodo
-				if(funtionality.contains(functionName) || funtionality.contains(functionName.toLowerCase())){
-					recursive = true;
-				}
-
-				// Haciendo la recursividad
-
-
-
-				return "AUN NO PAPA";
-
 						}
 					}
 				}
 				
 				return Integer.toString(total);
 
+				
 			}else{
 
 				// Realizando sin recursividad 
@@ -188,7 +184,9 @@ public class Definir{
 		String[] temp;
 		String response;
 
-		communicate = (ArrayList)this.oldFunction.get(functionName).clone();
+		for(int i = 0; i < this.oldFunction.get(functionName).size(); i++){
+			communicate.add(this.oldFunction.get(functionName).get(i));
+		}
 				
 		// Remplazando todas las variables por números
 		for(int i = 0; i < communicate.size(); i++){ // Por cada elemento del arraylist
@@ -272,6 +270,7 @@ public class Definir{
 	public Boolean hasKey(ArrayList<ArrayList<String>> function){
 		return functions.containsKey(function.get(0).get(1).toUpperCase()); 
 	}
+
 
 
 
