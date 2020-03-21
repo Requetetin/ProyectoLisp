@@ -200,7 +200,7 @@ public class Predicados{
 							 
 
 							case "=":
-								if(a == b){
+								if(Math.abs(a-b)<1.0){
 								for(int j=1;j<listado.get(i-3).size()-1;j++){
 									s+= listado.get(i-3).get(j);
 									}	
@@ -286,7 +286,7 @@ public class Predicados{
 							 
 
 							case "=":
-								if(a == b){
+								if(Math.abs(a-b)<1.0){
 								for(int j=1;j<listado.get(i-3).size()-1;j++){
 									s+= listado.get(i-3).get(j);
 									}
@@ -313,7 +313,7 @@ public class Predicados{
 					
 
 					case "=":
-					if(a == b){
+					if(Math.abs(a-b)<1){
 						for(int j=1;j<listado.get(i-1).size()-1;j++){
 						s+= listado.get(i-1).get(j);
 						}
@@ -371,7 +371,7 @@ public class Predicados{
 								}
 							 
 							case "=":
-								if(a == b){
+								if(Math.abs(a-b)<1){
 								for(int j=1;j<listado.get(i-3).size()-1;j++){
 									s+= listado.get(i-3).get(j);
 									}	

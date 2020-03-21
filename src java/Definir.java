@@ -42,8 +42,6 @@ public class Definir{
 		Boolean logic = false, aritmetico = false; // Verifica si hay un cond()
 		String resultado = "HOLA BB <3 :3";
 
-		System.out.println(function);
-
 		// Agregando los operadores matematicos
 		operadoresAritmeticos.add("+");
 		operadoresAritmeticos.add("-");
@@ -178,16 +176,12 @@ public class Definir{
 		ArrayList<ArrayList<String>> communicate = new ArrayList<>();
 		ArrayList<String> aux = new ArrayList<>();
 		ArrayList<Integer> position = new ArrayList<>();
+		Integer auxiliar;
 		String[] temp;
-
-		String response;
+		String response, temporal;
 
 		// Separando el string
 		communicate = (ArrayList)this.oldFunction.get(functionName).clone();
-
-		System.out.println(communicate);
-
-		System.out.print(communicate.get(0).indexOf(variables.get(functionName).get(0)));
 
 		// Remplazando todas las variables por números
 		for(int i = 0; i < communicate.size(); i++){ // Por cada elemento del arraylist
@@ -196,7 +190,9 @@ public class Definir{
 				for(int k = 0; k < replaceVariables.size(); k++){ // Por cada variable
 
 					if(communicate.get(i).get(j).equalsIgnoreCase(variables.get(functionName).get(k))){
-						communicate.get(i).set(j, replaceVariables.get(k)); // Remplazando las variables por números
+						auxiliar = (int)Float.parseFloat(replaceVariables.get(k));
+						temporal =  Integer.toString(auxiliar);
+						communicate.get(i).set(j, temporal); // Remplazando las variables por números
 						position.add(i);
 						position.add(j);
 						position.add(k);
@@ -221,9 +217,6 @@ public class Definir{
 		while(position.size() > 0){
 			communicate.get(position.remove(0)).set(position.remove(0), variables.get(functionName).get(position.remove(0)));
 		}
-
-		System.out.println("REPLACE " + aux);
-		System.out.println(communicate);
 		return aux;
 	}
 
