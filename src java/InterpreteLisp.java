@@ -18,10 +18,10 @@ public class InterpreteLisp{
 	static int actual = 0;
 
 	/*Se instancian las clases lisp*/
-	Leer print = new Leer();
-	Predicados predicados = new Predicados();
-	Definir definir = new Definir();
-	Calcular calcular = new Calcular();
+	private Leer print = new Leer();
+	private Predicados predicados = new Predicados();
+	private Definir definir = new Definir();
+	private Calcular calcular = new Calcular();
 
 
 	/**
