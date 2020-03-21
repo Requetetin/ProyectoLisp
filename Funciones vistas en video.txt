@@ -1,0 +1,40 @@
+/*PRINTS*/
+(write-line "hola") ; esto es un saludo
+
+/*DEFINIR FUNCIONES*/
+( DEFUN FTOC(TEMP)    ; farenheit to centrigrados
+ ( / ( - TEMP 32 ) 1.8 ) )
+(DEFUN FIBONACCI(N)
+ (COND ((= N 0) 1) ; n = 0?
+ ((= N 1) 1) ; n = 1?
+ (T ( + ( FIBONACCI (- N 1)) ; recursivo
+ (FIBONACCI (- N 2))))))
+
+/*USAR FUNCIONES*/
+(FTOC 32)
+(FIBONACCI 1)
+(FIBONACCI 2)
+(FIBONACCI 5)
+
+/*CONDICIONAL*/
+(cond (( > 3 4 ) "variant 1")
+      (( > 4 2 ) "variant 2")
+      (t "always valid variant"))
+
+/*OPERACIONES ARITMETICAS*/
+(+ 4 3)
+(* 4.8 2.5)
+(/ 2 3)
+(- 4 5)
+
+/*ATOM*/
+(atom 3)
+(atom '(1 2 3 4))
+
+/*LISTAS*/
+(list 1 2 3 4)
+
+/*EQUAL*/
+(equal '(1 2 3) (1 2 3))
+(equal 'moo 'moo)
+(equal 1 1)
