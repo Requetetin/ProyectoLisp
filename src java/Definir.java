@@ -92,9 +92,9 @@ public class Definir{
 						ArrayList<String> operation = new ArrayList<String>();
 
 
-						String a = funtionality.get(i);
-						String b = funtionality.get(i-1);
-						String op = funtionality.get(i-2);
+						String a = funtionality.remove(i);
+						String b = funtionality.remove(i-1);
+						String op = funtionality.remove(i-2);
 
 
 						System.out.println("ESTO ES A " + a);
@@ -105,14 +105,12 @@ public class Definir{
 						operation.add(b);
 						operation.add(a);
 						toOperate.add(operation);
+						System.out.println("SE HACE CALCULAR " + calc.operar(toOperate));
 						result = calc.operar(toOperate);
+						System.out.println("SE HACE CALCULAR " + Integer.parseInt(result));
 						total += Integer.parseInt(result);
-						System.out.println("SE HACE CALCULAR");
+						
 						i = i-3;
-
-						funtionality.remove(i);
-						funtionality.remove(i-1);
-						funtionality.remove(i-2);
 					}catch(Exception e){
 						System.out.println("NOMBRE FUN BUSCADA " + funtionality.get(i));
 						if(functions.containsKey(funtionality.get(i))){
