@@ -120,12 +120,12 @@ public class Definir{
 					}catch(Exception e){
 						funtionality.add(result);
 						i = funtionality.size()-1;
-						if(functions.containsKey(funtionality.get(i-1))){
+						if(functions.containsKey(funtionality.get(i-1).toUpperCase())){
 							ArrayList<ArrayList<String>> recurs = new ArrayList<ArrayList<String>>();
 							ArrayList<String> prerecurs = new ArrayList<String>();
 							prerecurs.add("(");
+							prerecurs.add(funtionality.get(i-1));
 							prerecurs.add(funtionality.get(i));
-							prerecurs.add(result);
 							prerecurs.add(")");
 							recurs.add(prerecurs);
 							runFuncion(recurs);
