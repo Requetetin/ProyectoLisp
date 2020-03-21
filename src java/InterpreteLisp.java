@@ -150,7 +150,7 @@ public class InterpreteLisp{
 	private void generarVoc(){
 		vocLisp.add("atom");
 		vocLisp.add("list");
-		vocLisp.add("equals");
+		vocLisp.add("equal");
 		vocLisp.add("cond");
 		vocLisp.add("+");
 		vocLisp.add("-");
