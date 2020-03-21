@@ -128,13 +128,13 @@ public class Predicados{
 		String s = "";
 		for(int i=0; i<listado.size();i++){
 			if(listado.get(i).contains("cond")){
-				Integer a = 0;
-				Integer b = 0;
+				Float a = 0.0f;
+				Float b = 0.0f;
 				String c = "";
 
 				//Busca los numeros y signos de la primera condicion
-				a = Integer.parseInt(listado.get(i-2).get(2));
-				b = Integer.parseInt(listado.get(i-2).get(3));
+				a = Float.parseFloat(listado.get(i-2).get(2));
+				b = Float.parseFloat(listado.get(i-2).get(3));
 				c = listado.get(i-2).get(1);
 			
 				//Este switch case es el de la primera condicion
@@ -148,8 +148,8 @@ public class Predicados{
 						return s;
 					}else{
 						//Sino, realiza el mismo proceso con el segundo parametro
-						a = Integer.parseInt(listado.get(i-4).get(2));
-						b = Integer.parseInt(listado.get(i-4).get(3));
+						a = Float.parseFloat(listado.get(i-4).get(2));
+						b = Float.parseFloat(listado.get(i-4).get(3));
 						c = listado.get(i-4).get(1);
 						switch(c){
 							case ">":
@@ -235,8 +235,8 @@ public class Predicados{
 						}
 						return s;
 					}else{
-						a = Integer.parseInt(listado.get(i-4).get(2));
-						b = Integer.parseInt(listado.get(i-4).get(3));
+						a = Float.parseFloat(listado.get(i-4).get(2));
+						b = Float.parseFloat(listado.get(i-4).get(3));
 						c = listado.get(i-4).get(1);
 						switch(c){
 							case ">":
@@ -319,8 +319,8 @@ public class Predicados{
 						}
 						return s;
 					}else{
-						a = Integer.parseInt(listado.get(i-4).get(2));
-						b = Integer.parseInt(listado.get(i-4).get(3));
+						a = Float.parseFloat(listado.get(i-4).get(2));
+						b = Float.parseFloat(listado.get(i-4).get(3));
 						c = listado.get(i-4).get(1);
 						switch(c){
 							case ">":
