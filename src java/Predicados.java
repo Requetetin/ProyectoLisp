@@ -77,7 +77,7 @@ public class Predicados{
 				int p = listado.get(i).indexOf("equals");
 				//Revisa para comparar dos parametros que son otras listas (No dos strings)
 				if(listado.get(i).size()<5){
-					if(listado.get(p-1).equals(listado.get(p-2))){
+					if(listado.get(i-1).equals(listado.get(i-2))){
 						return "true";
 					}
 					//Revisa para comparar dos parametros de una palabra
